@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts - Release Notes</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+	<li><a href="index.html">ホーム</a></li>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+	<li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+		<ul>
+			<li><a href="sastrutsplugin.html#Abstract">概要</a></li>
+			<li><a href="sastrutsplugin.html#Setup">セットアップ</a>
+			<li><a href="sastrutspluginUsage.html#Usage">使い方</a></li>
+			<li><a href="sastrutspluginReleaseNotes.html">SAStrutsPluginリリースノート</a></li>
+			<li><a href="sastrutsplugin.html#maillist">メーリングリスト</a></li>
+			<li><a href="sastrutsplugin.html#tracking">トラッキング</a></li>
+			<li><a href="sastrutsplugin.html#subversion">Subversionリポジトリ</a></li>
+			<li><a href="sastrutsplugin.html#blog">コミッタのブログ</a></li>
+		</ul>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.14 [2009/01/20]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-114'>SASTRUTS-114</a>] -         Java6でコンパイルされている問題を修正しました。  [<a href='http://ml.seasar.org/archives/seasar-user/2009-January/016680.html'>Seasar-user:16679</a>]
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.13 [2008/12/12]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-112'>SASTRUTS-112</a>] -         Actionのクラス名にactionが入っているときのView On Serverがおかしい問題を修正しました。  [<a href='http://ml.seasar.org/archives/seasar-user/2008-December/016460.html'>Seasar-user:16459</a>]
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.12 [2008/11/22]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-110'>SASTRUTS-110</a>] -         web.xml に context-param 定義を複数すると、 Ctrl+8 で Action から JSP にジャンプできない問題を修正しました。  [<a href='http://ml.seasar.org/archives/seasar-user/2008-November/016276.html'>Seasar-user:16275</a>]
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.11 [2008/10/31]</h2>
+
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-107'>SASTRUTS-107</a>] -         JSPの雛形を作成する
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-109'>SASTRUTS-109</a>] -         s:submitタグのproperty属性の補完対応
+</li>
+</ul>
+
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.10 [2008/09/23]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-106'>SASTRUTS-106</a>] -         inputタグでname属性以外も補完できてしまう問題を修正しました。
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-105'>SASTRUTS-105</a>] -         JSPエディタの補完機能のWTP3.0対応
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.9 [2008/09/21]</h2>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-96'>SASTRUTS-96</a>] -         JSPのs:linkタグからアクションへ飛べるようにする。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-97'>SASTRUTS-97</a>] -         View on Server機能で表示するURLのコンテキストパスを自由に指定できるようにする。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-98'>SASTRUTS-98</a>] -         ショートカットキーでView on Server機能を実行できるようにする。  [<a href='http://ml.seasar.org/archives/seasar-user/2008-June/014815.html'>Seasar-user:14814</a>]
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-99'>SASTRUTS-99</a>] -         Webapp ルートのデフォルト設定を/webappから/src/main/webappに変更する。
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-101'>SASTRUTS-101</a>] -         ポップアップメニューからSAStrutsのトップページをEclipseの内部ブラウザで表示できるようにする。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-102'>SASTRUTS-102</a>] -         WTPのJSPエディタでアクションのメソッドやアクションフォームのフィールドを補完できるようにする。
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.8 [2008/08/11]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-89'>SASTRUTS-89</a>] -         WEB-INF/view/index.jspからIndexActionへ遷移できない問題を修正しました。 [<a href='http://ml.seasar.org/archives/seasar-dev/2008-August/000879.html'>seasar-dev:881</a>]
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.7 [2008/06/27]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-72'>SASTRUTS-72</a>] -         2段以上ネストしたアクションからJSPファイルを作成する際のフォルダパスがおかしい問題を修正しました。 [<a href='http://ml.seasar.org/archives/seasar-user/2008-June/014808.html'>Seasar-user:14807</a>]
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-61'>SASTRUTS-73</a>] -         SAStrutsPluginのキーバインディングの変更（F6,F7→Ctrl+8） [<a href='http://ml.seasar.org/archives/seasar-user/2008-June/014815.html'>Seasar-user:14814</a>]
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.6 [2008/06/06]</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-60'>SASTRUTS-60</a>] -         web.xmlのcontext-param要素が無い場合にActionへの遷移がおかしい問題を修正しました。 [<a href='http://ml.seasar.org/archives/seasar-dev/2008-May/000826.html'>seasar-dev:828</a>]
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-64'>SASTRUTS-64</a>] -         空のActionに飛べない問題を修正しました。
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-61'>SASTRUTS-61</a>] -         action要素が無くてinputタグの行で操作した場合に該当メソッドに飛べるようにする。 [<a href='http://ml.seasar.org/archives/seasar-dev/2008-May/000826.html'>seasar-dev:828</a>]
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-63'>SASTRUTS-63</a>] -         ネストしたIndexAction対応。 [<a href='http://ml.seasar.org/archives/seasar-dev/2008-May/000826.html'>seasar-dev:828</a>]
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-86'>SASTRUTS-66</a>] -         View on Server機能。 [<a href='http://ml.seasar.org/archives/seasar-dev/2008-May/000826.html'>seasar-dev:828</a>]
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-86'>SASTRUTS-67</a>] -         Actionクラスの雛形を作成する。 [<a href='http://ml.seasar.org/archives/seasar-dev/2008-May/000826.html'>seasar-dev:828</a>]
+</li>
+</ul>
+        
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.5 [2008/05/20]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-49'>SASTRUTS-49</a>] -         JSPを新規作成するときに親フォルダが自動的に計算されない問題を修正しました。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-51'>SASTRUTS-51</a>] -         パスを分割した場合に処理がおかしい問題を修正しました。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-54'>SASTRUTS-54</a>] -         Javaを新規作成するときに親フォルダが自動的に計算されない問題を修正しました。
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-48'>SASTRUTS-48</a>] -         Viewのプレフィックス対応(JSP→Javaで一部実装もれがありました)。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-52'>SASTRUTS-52</a>] -         urlPattern対応。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-53'>SASTRUTS-53</a>] -         s:formのないJSPからでもActionに飛べるようにする。
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.4 [2008/05/18]</h2>
+
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-42'>SASTRUTS-42</a>] -         IndexActionから存在しているJSPファイルに飛べない問題を修正しました。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-43'>SASTRUTS-43</a>] -         JavaからJSPに遷移する際、文字列リテラルの先頭が/の場合でもWebアプリケーションのルートからの相対パスでなくアクションからの相対パスになってしまう問題を修正しました。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-44'>SASTRUTS-44</a>] -         二段階以上ネストしたルートパッケージを考慮していない問題を修正しました。
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-48'>SASTRUTS-48</a>] -         Viewのプレフィックス対応
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.3 [2008/04/27]</h2>
+
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-39'>SASTRUTS-39</a>] -         ネット接続していない環境でも使用できるようにする（EntityResolverを使う）。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-38'>SASTRUTS-38</a>] -         convention.diconからルートパッケージを取得する処理の改良 [<a href='http://ml.seasar.org/archives/seasar-user/2008-April/013821.html'>Seasar-user:13821</a>]
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-37'>SASTRUTS-37</a>] -         JSPのinputタグからJavaのメソッドに飛べるようにする。
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.2 [2008/03/22]</h2>
+
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-27'>SASTRUTS-27</a>] -         JavaソースにあるJSPファイル名の文字列を選択しなくても、カーソル行からJSPに飛べるようにする  [<a href='http://ml.seasar.org/archives/seasar-user/2008-March/013282.html'>Seasar-user:13282</a>]
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-28'>SASTRUTS-28</a>] -         JSPファイルからJavaファイルに飛べるようにする。
+</li>
+</ul>
+
+<h2>Release Notes - SAStrutsPlugin - Version 0.0.1 [2008/03/14]</h2>
+最初のリリース
+    
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2006, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

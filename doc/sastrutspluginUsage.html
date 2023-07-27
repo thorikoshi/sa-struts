@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+	<li><a href="index.html">ホーム</a></li>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+	<li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+		<ul>
+			<li><a href="sastrutsplugin.html#Abstract">概要</a></li>
+			<li><a href="sastrutsplugin.html#Setup">セットアップ</a>
+			<li><a href="sastrutspluginUsage.html">使い方</a></li>
+				<ul>
+					<li><a href="#Usage">プロジェクトの設定</a>
+					<li><a href="#func_jsp_open">JSPファイルを開く</a>
+					<li><a href="#func_jsp_create">JSPファイルを作成する</a>
+					<li><a href="#func_java_open">Javaファイルを開く</a>
+					<li><a href="#func_java_create">Javaファイルを作成する</a>
+					<li><a href="#jsp_editor_contents_assist">JSP Editorの補完機能</a>
+					<li><a href="#view_on_server">View on Server機能</a>
+					<li><a href="#view_sastruts_help">View SAStruts Help機能</a>
+				</ul>
+			<li><a href="sastrutspluginReleaseNotes.html">SAStrutsPluginリリースノート</a></li>
+			<li><a href="sastrutsplugin.html#maillist">メーリングリスト</a></li>
+			<li><a href="sastrutsplugin.html#tracking">トラッキング</a></li>
+			<li><a href="sastrutsplugin.html#subversion">Subversionリポジトリ</a></li>
+			<li><a href="sastrutsplugin.html#blog">コミッタのブログ</a></li>
+		</ul>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>SAStrutsPlugin</h2>
+
+
+<h3><a name="Usage">使い方</a></h3>
+<h4><a name="project_setting">プロジェクトの設定</a></h4>
+<ul>
+	<li>プロジェクトのプロパティで「SAStruts」を選択し、Webapp ルートを選択します。</li>
+	<li>プロジェクトのプロパティで「SAStruts」を選択し、Main Java Source Pathを選択します。</li>
+	<li>プロジェクトのプロパティで「SAStruts」を選択し、convention.dicon パスを選択します。</li>
+	<li>プロジェクトのプロパティで「SAStruts」を選択し、WebServerを選択します。</li>
+	<li>プロジェクトのプロパティで「SAStruts」を選択し、コンテキストを選択します。</li>
+</ul>
+
+<img src="images/project_property.gif"/>
+
+<p>
+Super Agile Strutsチュートリアル(sa-struts-tutorial)であれば「/src/main/webapp」、「/src/main/java」、「/src/main/resouces/convention.dicon」、「http://localhost:8080」、
+コンテキストは空となります。コンテキストが空の場合はEclipseのプロジェクト名がコンテキスト名として採用されます。チュートリアルであればsa-struts-tutorialとなります。
+</p>
+<p>
+SAStrutsPluginは、
+Webapp ルートを基点にJSPファイルのパスを、
+Main Java Source Pathを基点にJavaファイルのパスを、
+convention.dicon パスを基点にルートパッケージ名を、
+取得します。
+WebServer、コンテキストは後述するView on Server機能でアクセスするURLの基点となります。
+</p>
+
+<h4><a name="func_jsp_open">JSPファイルを開く</a></h4>
+
+<p>
+JSPファイル名が記述されている文字列のある行からポップアップメニューかショートカットキー（Ctrl+8）で対応するJSPファイルを開くことができます。
+</p>
+
+<img src="images/open_jsp.gif"/>
+
+<h4><a name="func_jsp_create">JSPファイルを作成する</a></h4>
+<ol type="1">
+<p>
+JSPファイルを開こうとして対応するJSPファイルが存在しない場合は、JSPファイル作成用のウィザードを使って新規に作成することができます。
+ファイル名や保存するフォルダは自動的に決定されるのでほとんどの場合変更する必要はありません。
+</p>
+  <ol><li value="1">対応するJSPファイルが存在しない場合は、
+    メッセージボックスがポップアップします。</li></ol><br clear="all"/>
+
+  <img class="ss" src="images/message_box_jsp.gif" alt=""/>
+  <br/><br/>
+  <ol><li value="2">OKをクリックすると「JSPファイルの新規作成ウィザード」が開きます。
+  保存先のディレクトリやJSPファイル名は自動的に決まるので、ほとんどの場合、変更する必要はありません。</li></ol><br clear="all"/>
+  <img class="ss" src="images/wizard_jsp.gif" alt=""/>
+</ol>
+
+<h4><a name="func_java_open">Javaファイルを開く</a></h4>
+
+<p>
+JSP Editor上からポップアップメニューかショートカットキー（Ctrl+8）で対応するJavaソースを開くことができます。
+<ul>
+  <li>s:formタグの行から操作した場合はJavaソースのindexメソッドに遷移します。urlPatternを使っている場合は該当するメソッドに遷移します。</li>
+  <li>inputタグの行から操作した場合はJavaソースの該当するメソッド（name属性と同じメソッド名）に遷移します。</li>
+  <li>aタグ、s:linkタグのhref属性でurlPatternを使っている場合は、aタグの行で操作すれば該当するメソッドに遷移します。</li>
+</ul>
+どのケースも対応するメソッドが見つからない場合はindexメソッドに遷移します。
+</p>
+
+<img src="images/open_java.gif"/>
+
+<h4><a name="func_java_create">Javaファイルを作成する</a></h4>
+<ol type="1">
+<p>
+Javaファイルを開こうとして対応するJavaファイルが存在しない場合は、Javaファイル作成用のウィザードを使って新規に作成することができます。
+ファイル名や保存するフォルダは自動的に決定されるのでほとんどの場合変更する必要はありません。
+</p>
+  <ol><li value="1">対応するJavaファイルが存在しない場合は、
+    メッセージボックスがポップアップします。</li></ol><br clear="all"/>
+
+  <img class="ss" src="images/message_box_java.gif" alt=""/>
+  <br/><br/>
+  <ol><li value="2">OKをクリックすると「Javaファイルの新規作成ウィザード」が開きます。
+  保存先のディレクトリやJavaファイル名は自動的に決まるので、ほとんどの場合、変更する必要はありません。</li></ol><br clear="all"/>
+  <img class="ss" src="images/wizard_java.gif" alt=""/>
+</ol>
+
+<h4><a name="jsp_editor_contents_assist">JSP Editorの補完機能</a></h4>
+<ol type="1">
+<p>
+WTPのJSP Editor上でActionFormのプロパティやActionの実行メソッドを補完することができます。<br/>
+html:text等の入力系htmlタグのproperty属性の場合はActionFormのpublicフィールドプロパティを、
+html:submit等のボタン系htmlタグのname属性の場合はActionの実行メソッド（public、戻り値がString、引数無し、@Executeアノテーション付き）を補完することができます。<br/>
+なおc:foreachタグには対応していません。
+</p>
+<img src="images/contents_assist_property.gif"/>
+<img src="images/contents_assist_method.gif"/>
+</ol>
+
+<h4><a name="view_on_server">View on Server機能</a></h4>
+<ol type="1">
+<p>
+APサーバを起動後、Actionクラスを選択してポップアップメニュー、ショートカットキーからブラウザを起動して表示を確認することができます。
+</p>
+<img src="images/view_on_server.gif"/>
+</ol>
+
+<h4><a name="view_sastruts_help">View SAStruts Help機能</a></h4>
+
+<ol type="1">
+<p>
+ポップアップメニュー、ショートカットキーからブラウザを起動してSAStrutsのトップページを表示することができます。
+</p>
+<img src="images/view_sastruts_help.gif"/>
+</ol>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2008, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+<!-- TRANSLATION NOTE BEGINS -->
+<div style="position:absolute; left: 200px; top: 160px; border: 1px dotted gray; width: 800px; background-color: #EEEEFF">
+NOTE: This page is a translation from the original Japanese version of
+ <a href="../sastrutspluginUsage.html">sastrutspluginUsage.html, 
+ rev 762</a> 
+ as of 2008-09-23.
+</div>
+<!--  TRANSLATION NOTE ENDS  -->
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+	<li><a href="index.html">Home</a></li>
+	<li><a href="setup.html">Setting up</a></li>
+	<li><a href="download.html">Download</a></li>
+	<li><a href="releaseNotes.html">Release Notes</a></li>
+	<li><a href="tutorial.html">Tutorial</a></li>
+	<li><a href="featureReference.html">Feature Reference</a></li>
+	<li><a href="annotationReference.html">Annotations Reference</a></li>
+	<li><a href="fileReference.html">Configuration File Reference</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+		<ul>
+			<li><a href="sastrutsplugin.html#Abstract">Overview</a></li>
+			<li><a href="sastrutsplugin.html#Setup">Setting up</a>
+			</li><li><a href="sastrutspluginUsage.html">Usage</a></li>
+				<ul>
+					<li><a href="#Usage">Project setting</a>
+					</li><li><a href="#func_jsp_open">Open the  JSP file</a>
+					</li><li><a href="#func_jsp_create">Creating the JSP file</a>
+					</li><li><a href="#func_java_open">Open the JAVA file</a>
+					</li><li><a href="#func_java_create">Creating the JAVA file</a>
+					</li><li><a href="#jsp_editor_contents_assist">completion feature on JSP Editor</a>
+					</li><li><a href="#view_on_server">View on Server</a>
+					</li><li><a href="#view_sastruts_help">View SAStruts Help</a>
+				</li></ul>
+			<li><a href="sastrutspluginReleaseNotes.html">Release Note of SAStrutsPlugin</a></li>
+			<li><a href="sastrutsplugin.html#maillist">Mailing List</a></li>
+			<li><a href="sastrutsplugin.html#tracking">Tracking</a></li>
+			<li><a href="sastrutsplugin.html#subversion">Subversion Repository</a></li>
+			<li><a href="sastrutsplugin.html#blog">Committer's blog</a></li>
+		</ul>
+	<li><a href="portlet.html">Portlet</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>SAStrutsPlugin</h2>
+
+
+<h3><a name="Usage">Usage</a></h3>
+<h4><a name="project_setting">Project setting</a></h4>
+<ul>
+	<li>In the Properties of your project, select  "SAStruts",  then specify Webapp Root.  </li>
+	<li>In the Properties of your project, select "SAStruts", then specify Main Java Source Path.  </li>
+	<li>In the Properties of your project, select  "SAStruts" , then specify convention.dicon Path. </li>
+	<li>In the Properties of your project, select  "SAStruts",  then specify WebServer.  </li>
+	<li>In the Properties of your project, select  "SAStruts",  then specify Context.  </li>
+</ul>
+
+<img src="images/project_property.gif"/>
+
+<p>For example, in the case of Super Agile Struts Tutorial(sa-struts-tutorial), you have to specify those parameters as "/src/main//webapp", "/src/main/java",  "/src/main/resouces/convention.dicon", "http://localhost:8080" and empty for Context parameter. If Context parameter is empty, Eclipse project name is used as the context name. In the case of Tutorial, sa-struts-tutorial is used.</p>
+<p>SAStrutsPlugin obtains JSP file paths, Java file paths and root packages from Webapp Root, Main Java Source Path and convention.dicon Path, respectively. WebServer and Context parameters consist a base of the URL for View on Server feature which is described later.</p>
+
+<h4><a name="func_jsp_open">Open the  JSP file</a></h4>
+
+<p>In an SAStruts action source code, place the text cursor on  the line where JSP file name string is present,  then use the context menu or hit the shortcut key(Ctrl+8)  to  open the corresponding JSP file.</p>
+
+<img src="images/open_jsp.gif"/>
+
+<h4><a name="func_jsp_create">Creating the JSP file</a></h4>
+<ol type="1">
+<p>When no corresponding JSP file to open is found, you can create a new one with a wizard. The file name and the folder to save in are automatically determined, and no modification is required in most cases.</p>
+  <ol><li value="1">When no corresponding JSP file to open is found, a message box appears. [NOTE: The following screenshots are in Japanese. If you use a non-Japanese environment, the message will be as this: "JSP file is not found. / Create a corresponding JSP file?"]</li></ol><br clear="all"/>
+
+  <img class="ss" src="images/message_box_jsp.gif" alt=""/>
+  <br/><br/>
+  <ol><li value="2">By clicking OK, "Create a new JSP file" wizard appears.  The file name of the JSP file and the folder to save in are automatically determined, so no modification is required in most cases.</li></ol><br clear="all"/>
+  <img class="ss" src="images/wizard_jsp.gif" alt=""/>
+</ol>
+
+<h4><a name="func_java_open">Open the JAVA file</a></h4>
+
+<p>On JSP Editor, you can open a Java source file corresponding to the JSP file via the popup menu or by a keyboard shortcut (Ctrl+8). <ul>
+  <li>If  the cursor was on s:form tag, it  forwards to index method of the JAVA source. If urlPatten is used, then the cursor will be on the corresponding method.</li>
+  <li>If the cursor was on an input tag, it forwards to the corresponding JAVA method (whose name is the same as the name attribute of the tag).</li>
+  <li>If the cursor was on the line of HTML &lt;a&gt; or &lt;s:link&gt; tag whose href attribute uses urlPattern, then it forwards to the corresponding method.</li>
+</ul>In all cases,it will forward to index method  if no corresponding method is found .</p>
+
+<img src="images/open_java.gif"/>
+
+<h4><a name="func_java_create">Creating the JAVA file</a></h4>
+<ol type="1">
+<p>When no corresponding JAVA file to open is found, you can create a new one with a wizard. The file name and the folder to save in are automatically determined, and no modification is required in most cases.</p>
+  <ol><li value="1">When no corresponding JAVA file to open is found, a message box appears. [ For a non-Japanese environment, the message will be: "Java file is not found. / Create a corresponding Java file? ". ]</li></ol><br clear="all"/>
+
+  <img class="ss" src="images/message_box_java.gif" alt=""/>
+  <br/><br/>
+  <ol><li value="2">By clicking OK, "Create a new Java file" wizard appears. The file name of the JAVA file and the folder to save in are automatically determined, so no modification is required in most cases.</li></ol><br clear="all"/>
+  <img class="ss" src="images/wizard_java.gif" alt=""/>
+</ol>
+
+<h4><a name="jsp_editor_contents_assist">completion feature on JSP Editor</a></h4>
+<ol type="1">
+<p>Code completion is available for properties of ActionForm and execution methods of Action  on the JSP Editor of WTP. <br/> Public field properties of the ActionForm will be shown as the completion candidates at the "property" attribute of html:text and other tags for input. Execution methods of the Action (public, return value String, no arguments and with a @Execute annnotation) will be shown as the completion candidates at the "name" attribute of html:submit and other tags for buttons. <br/> c:foreach tag is not supported.</p>
+<img src="images/contents_assist_property.gif"/>
+<img src="images/contents_assist_method.gif"/>
+</ol>
+
+<h4><a name="view_on_server">View on Server</a></h4>
+<ol type="1">
+<p>Once you have started the application server, you can view how your action class is rendered  through the server by just selecting the class then choosing View on Server from SAStruts context menu or by  using a keyboard shortcut.</p>
+<img src="images/view_on_server.gif"/>
+</ol>
+
+<h4><a name="view_sastruts_help">View SAStruts Help</a></h4>
+
+<ol type="1">
+<p>You can show SAStruts top page by choosing View SAStruts Help from the context menu or by just using a keyboard shortcut.</p>
+<img src="images/view_sastruts_help.gif"/>
+</ol>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>© Copyright The Seasar Foundation and the others 2008, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

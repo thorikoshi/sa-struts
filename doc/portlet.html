@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+	<li><a href="index.html">ホーム</a></li>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+	<li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+		<ul>
+			<li><a href="#Abstract">概要</a></li>
+			<li><a href="#Config">使い方</a></li>
+			<li><a href="#Build">ビルドと配備</a>
+			<li><a href="#news">NEWS</a></li>
+			<li><a href="#subversion">Subversionリポジトリ</a></li>
+			<li><a href="#notes">注意点</a></li>
+		</ul>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>SAStruts のポートレット対応</h2>
+
+<h3><a name="Abstract">概要</a></h3>
+
+<p>
+SAStruts で作成したアプリケーションをポートレットしても動作させる方法を提供しています。
+通常の SAStruts アプリケーションの作成後、設定ファイルを変更することでポートレットとして利用することができます。
+</p>
+
+<h3><a name="Config">設定方法</a></h3>
+<p>
+本章の変更を適用することで SAStruts のアプリケーションをポートレットとして利用することができます。
+</p>
+<h4>変更内容</h4>
+<ul>
+    <li>web.xml を変更</li>
+    <li>struts-config.xml を変更</li>
+    <li>common.jsp を変更</li>
+    <li>portlet.xml を追加</li>
+    <li>sa-struts-portlet-*.jar を追加</li>
+</ul>
+
+<h4>web.xml を変更</h4>
+<p>
+web.xml で以下の点を変更します。
+</p>
+<ul>
+    <li>org.seasar.struts.portlet.filter.PortletRequestFilter を encodingFilter の後に INCLUDE で追加</li>
+    <li>org.seasar.framework.container.filter.S2ContainerFilter を org.seasar.struts.portlet.filter.S2ContainerFilter に変更</li>
+    <li>org.seasar.framework.container.hotdeploy.HotdeployFilter を org.seasar.struts.portlet.filter.HotdeployFilter に変更</li>
+    <li>org.seasar.struts.portlet.filter.PortletRoutingFilter を routingfilter の後に INCLUDE で追加</li>
+    <li>org.apache.struts.action.ActionServlet を org.seasar.struts.portlet.servlet.ActionServlet に変更</li>
+</ul>
+<p>
+以下は web.xml の変更例です。
+</p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app 
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" 
+    version="2.4"&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;sastruts.VIEW_PREFIX&lt;/param-name&gt;
+    &lt;param-value&gt;/WEB-INF/view&lt;/param-value&gt;
+  &lt;/context-param&gt;
+  &lt;filter&gt;
+    &lt;filter-name&gt;encodingfilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.extension.filter.EncodingFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;encoding&lt;/param-name&gt;
+      &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+    &lt;/init-param&gt;
+  &lt;/filter&gt;
+  <font color="red">&lt;filter&gt;
+    &lt;filter-name&gt;portletRequestFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.struts.portlet.filter.PortletRequestFilter&lt;/filter-class&gt;
+  &lt;/filter&gt;</font>
+  &lt;filter&gt;
+    &lt;filter-name&gt;requestDumpFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.extension.filter.RequestDumpFilter&lt;/filter-class&gt;
+  &lt;/filter&gt;
+  <font color="red">&lt;filter&gt;
+    &lt;filter-name&gt;s2filter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.struts.portlet.filter.S2ContainerFilter&lt;/filter-class&gt;
+  &lt;/filter&gt;</font>
+  <font color="red">&lt;filter&gt;
+    &lt;filter-name&gt;hotdeployfilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.struts.portlet.filter.HotdeployFilter&lt;/filter-class&gt;
+  &lt;/filter&gt;</font>
+  &lt;filter&gt;
+    &lt;filter-name&gt;routingfilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.struts.filter.RoutingFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;jspDirectAccess&lt;/param-name&gt;
+      &lt;param-value&gt;false&lt;/param-value&gt;
+    &lt;/init-param&gt;
+  &lt;/filter&gt;
+  <font color="red">&lt;filter&gt;
+    &lt;filter-name&gt;portletRoutingfilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.seasar.struts.portlet.filter.PortletRoutingFilter&lt;/filter-class&gt;
+  &lt;/filter&gt;</font>
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;encodingfilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+  &lt;/filter-mapping&gt;
+  <font color="red">&lt;filter-mapping&gt;
+    &lt;filter-name&gt;portletRequestFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
+  &lt;/filter-mapping&gt;</font>
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;s2filter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;
+    &lt;dispatcher&gt;FORWARD&lt;/dispatcher&gt;
+    &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
+  &lt;/filter-mapping&gt;
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;hotdeployfilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;
+    &lt;dispatcher&gt;FORWARD&lt;/dispatcher&gt;
+    &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
+  &lt;/filter-mapping&gt;
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;routingfilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;
+  &lt;/filter-mapping&gt;
+  <font color="red">&lt;filter-mapping&gt;
+    &lt;filter-name&gt;portletRoutingfilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
+  &lt;/filter-mapping&gt;</font>
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;requestDumpFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+    &lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;
+    &lt;dispatcher&gt;FORWARD&lt;/dispatcher&gt;
+    &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
+  &lt;/filter-mapping&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;<font color="red">org.seasar.struts.portlet.servlet.ActionServlet</font>&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;config&lt;/param-name&gt;
+      &lt;param-value&gt;/WEB-INF/struts-config.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;configFactory&lt;/param-name&gt;
+      &lt;param-value&gt;org.seasar.struts.config.S2ModuleConfigFactory&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+...
+</pre>
+
+<h4>struts-config.xml を変更</h4>
+<p>
+struts-config.xml で以下の点を変更します。
+</p>
+<ul>
+    <li>org.seasar.struts.action.S2RequestProcessor を org.seasar.struts.portlet.action.S2RequestProcessor に変更</li>
+</ul>
+<p>
+以下は struts-config.xml の変更例です。
+</p>
+<pre>
+...
+    &lt;controller
+        maxFileSize="1024K"
+        bufferSize="1024"
+        <font color="red">processorClass="org.seasar.struts.portlet.action.S2RequestProcessor"</font>
+        multipartClass="org.seasar.struts.upload.S2MultipartRequestHandler"/&gt;
+...
+</pre>
+
+<h4>common.jsp を変更</h4>
+<p>
+common.jsp で以下の点を変更します。
+</p>
+<ul>
+    <li>&lt;%@taglib prefix="s" uri="http://sastruts.seasar.org"%&gt; を &lt;%@taglib prefix="f" uri="http://sastruts.seasar.org/functions"%&gt; に変更</li>
+</ul>
+<p>
+以下は common.jsp の変更例です。
+</p>
+<pre>
+&lt;%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%&gt;
+&lt;%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%&gt;
+&lt;%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%&gt;
+&lt;%@taglib prefix="html" uri="http://struts.apache.org/tags-html"%&gt;  
+&lt;%@taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%&gt;  
+&lt;%@taglib prefix="tiles" uri="http://jakarta.apache.org/struts/tags-tiles"%&gt;
+&lt;%@taglib prefix="f" uri="http://sastruts.seasar.org/functions"%&gt;
+<font color="red">&lt;%@taglib prefix="s" uri="http://sastruts.seasar.org/portlet"%&gt;</font>
+</pre>
+
+<h4>portlet.xml を追加</h4>
+<p>
+portlet.xml を作成して、ポートレット情報を記述してください。
+</p>
+<p>
+以下は portlet.xml の作成例です。
+portlet-class には org.seasar.struts.portlet.SAStrutsPortlet を指定します。
+初期値の viewPage の値に初期ページのパスを指定します。
+指定されたパスがポートレットにアクセスしたときに表示されるページになります。
+</p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;portlet-app version="1.0" 
+    xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd
+    http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd"&gt;
+  &lt;portlet&gt;
+    &lt;description&gt;SAStruts Tutorial&lt;/description&gt;
+    &lt;portlet-name&gt;SAStrutsTutorialPortlet&lt;/portlet-name&gt;
+    &lt;display-name&gt;SAStruts Tutorial Portlet&lt;/display-name&gt;
+    &lt;portlet-class&gt;<font color="red">org.seasar.struts.portlet.SAStrutsPortlet</font>&lt;/portlet-class&gt;
+    <font color="red">&lt;init-param&gt;
+      &lt;name&gt;viewPage&lt;/name&gt;
+      &lt;value&gt;/&lt;/value&gt;
+    &lt;/init-param&gt;</font>
+    &lt;expiration-cache&gt;0&lt;/expiration-cache&gt;
+    &lt;supports&gt;
+      &lt;mime-type&gt;text/html&lt;/mime-type&gt;
+      &lt;portlet-mode&gt;VIEW&lt;/portlet-mode&gt;
+    &lt;/supports&gt;
+    &lt;supported-locale&gt;en&lt;/supported-locale&gt;
+    &lt;supported-locale&gt;ja&lt;/supported-locale&gt;
+    &lt;portlet-info&gt;
+      &lt;title&gt;SAStruts Tutorial&lt;/title&gt;
+      &lt;keywords&gt;SAStruts,sample&lt;/keywords&gt;
+    &lt;/portlet-info&gt;
+  &lt;/portlet&gt;
+&lt;/portlet-app&gt;
+</pre>
+<p>
+init-param では、以下のものを指定することができます。
+</p>
+<table>
+    <tr>
+        <th>名前(name)</th>
+        <th>値(value)</th>
+    </tr>
+    <tr>
+        <td>viewPage</td>
+        <td>表示(VIEW)モードの初期ページ。</td>
+    </tr>
+    <tr>
+        <td>editPage</td>
+        <td>編集(EDIT)モードの初期ページ。</td>
+    </tr>
+    <tr>
+        <td>helpPage</td>
+        <td>ヘルプ(HELP)モードの初期ページ。</td>
+    </tr>
+    <tr>
+        <td>contentType</td>
+        <td>デフォルトのコンテンツタイプ。アプリケーション側で設定されていない場合に利用します。</td>
+    </tr>
+    <tr>
+        <td>encoding</td>
+        <td>処理時に利用するエンコーディング。指定しない場合は UTF-8 です。</td>
+    </tr>
+    <tr>
+        <td>maxCacheSize</td>
+        <td>保持する過去ページのキャッシュ値です。デフォルトは 5 です。このキャッシュはブラウザの戻るボタンをクリックしたときに利用します。</td>
+    </tr>
+</table>
+    
+
+<h4>sa-struts-portlet-*.jar を追加</h4>
+<p>
+sa-struts-portlet-*.jar を取得して、WEB-INF/lib に追加してください。
+<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/">http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/</a> などから取得できます。
+</p>
+
+<h3><a name="Build">ビルドと配備</a></h3>
+<p>
+上記の設定後、今まで通りビルドして、war ファイルを作成してください。
+war ファイルをポータルに配備して、ポートレットとして利用することができます。
+</p>
+
+<h3><a name="news">NEWS</a></h3>
+<ul>
+  <li>2009/12/06 SAStrutsポートレット 1.0.2 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.2/">こちら</a></li>
+  <li>2009/10/24 SAStrutsポートレット 1.0.1 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.1/">こちら</a></li>
+  <li>2009/02/13 SAStrutsポートレット 1.0.0 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.0/">こちら</a></li>
+  <li>2008/12/31 SAStrutsポートレット 1.0.0-rc5 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.0-rc5/">こちら</a></li>
+  <li>2008/12/01 SAStrutsポートレット 1.0.0-rc4 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.0-rc4/">こちら</a></li>
+  <li>2008/09/25 SAStrutsポートレット 1.0.0-rc3 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.0-rc3/">こちら</a></li>
+  <li>2008/09/08 SAStrutsポートレット 1.0.0-rc2 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.0-rc2/">こちら</a></li>
+  <li>2008/09/04 SAStrutsポートレット 1.0.0-rc1 をリリースしました。<a href="http://maven.seasar.org/maven2/org/seasar/sastruts/sa-struts-portlet/1.0.0-rc1/">こちら</a></li>
+</ul>
+
+<h3><a name="subversion">Subversionリポジトリ</a></h3>
+<p>SAStruts ポートレットのソースコードは、seasar.org のSubversionリポジトリで公開されています。</br>
+どなたでもアクセスしてソースコードを閲覧することができます。</br>
+(以下のリンクをクリックするとWeb経由でもソースコードを閲覧できます)
+</p>
+<dl>
+<dt><b>SVNリポジトリのURL</b></dt><dd><a href="https://www.seasar.org/svn/sastruts/trunk/sa-struts-portlet/">https://www.seasar.org/svn/sastruts/trunk/sa-struts-portlet/</a></dd>
+</dl>
+
+<h3><a name="notes">注意点</a></h3>
+<p>
+ポートレットの仕様の都合上、制限事項があります。
+</p>
+<ul>
+  <li>初回アクセスなどで表示だけの処理が行われる場合、実行メソッドでリダイレクトを設定できません。ポートレットではリダイレクトを processAction() のときしかできないためです。</li>
+    <li>このライブラリは、デフォルトで、ポートレット表示に不要な body タグ以上の要素は出力時に削除します。この処理をスキップするためには、web.xml の PortletRequestFilter の設定で init-param で contentOnly を false と設定してください。</li>
+</ul>
+
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2008, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

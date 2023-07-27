@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+	<li><a href="index.html">ホーム</a></li>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+	<li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+	<li><a href="mavenArchetype.html">Maven Archetype</a></li>
+		<ul>
+			<li><a href="#Abstract">概要</a></li>
+			<li><a href="#Prepare">事前準備</a></li>
+			<li><a href="#Create">プロジェクト生成</a>
+			<li><a href="#Use">利用方法</a></li>
+			<li><a href="#Eclipse">Eclipseでの利用</a></li>
+		</ul>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>SAStruts の Maven Archetype</h2>
+
+<h3><a name="Abstract">概要</a></h3>
+
+<p>
+SAStruts の Maven 2 プロジェクトを生成するために、sa-struts-archetype を提供しています。
+Maven 2 の archetype:generate ゴールを実行することで、素早く SAStruts のプロジェクトを生成することができます。
+</p>
+
+<h3><a name="Prepare">事前準備</a></h3>
+<p>
+<a href="http://maven.apache.org/">Maven 2</a> がセットアップされている必要があります。(バージョンは 2.0.7 以降)
+</p>
+
+<h3><a name="Create">プロジェクト生成</a></h3>
+<p>
+archetype:generate ゴールを実行することでプロジェクトを生成します。
+利用可能な sa-struts-archetype のバージョンは <a href="https://www.seasar.org/maven/maven2/org/seasar/sastruts/sa-struts-archetype/">https://www.seasar.org/maven/maven2/org/seasar/sastruts/sa-struts-archetype/</a> をご確認ください。
+</p>
+<pre>
+mvn archetype:generate -DarchetypeRepository=https://www.seasar.org/maven/maven2/ \
+    -DarchetypeGroupId=org.seasar.sastruts \
+    -DarchetypeArtifactId=sa-struts-archetype -DarchetypeVersion=&lt;sa-struts-archetypeのバージョン&gt; \
+    -DgroupId=&lt;グループID&gt; -DartifactId=&lt;アーチファクトID&gt; -Dversion=&lt;バージョン&gt;
+</pre>
+<p>
+-D オプションで指定できる値は以下の通りです。
+</p>
+<table>
+    <tr>
+        <th>名前(name)</th>
+        <th>値(value)</th>
+    </tr>
+    <tr>
+        <td>groupId</td>
+        <td>生成するプロジェクトのグループ ID (ex. -DgroupId=com.example)</td>
+    </tr>
+    <tr>
+        <td>artifactId</td>
+        <td>生成するプロジェクトのアーチファクト ID (ex. -DartifactId=sample)</td>
+    </tr>
+    <tr>
+        <td>artifactId</td>
+        <td>生成するプロジェクトのバージョン (ex. -Dversion=1.0)</td>
+    </tr>
+    <tr>
+        <td>use-dbflute</td>
+        <td>Maven DBFlute Plugin の設定をするかどうか。デフォルト値は false。(ex. -Duse-dbflute=true)</td>
+    </tr>
+    <tr>
+        <td>use-mobylet</td>
+        <td>mobylet 用の設定ファイルを生成するかどうか。デフォルト値は false。(ex. -Duse-mobylet=true)</td>
+    </tr>
+    <tr>
+        <td>use-portlet</td>
+        <td>ポートレット用の設定ファイルを生成するかどうか。デフォルト値は false。(ex. -Duse-portlet=true)</td>
+    </tr>
+</table>
+    
+<h3><a name="Use">利用方法</a></h3>
+<p>
+archetype:generate ゴール実行後、通常のウェブアプリケーションの Maven 2 プロジェクトと同様に扱えます。
+mvn package を実行すると、target ディレクトリ以下に war ファイルが生成されます。
+</p>
+<pre>
+$ mvn package
+</pre>
+<p>
+ご利用のアプリケーションサーバに配備して利用してください。
+</p>
+<h3><a name="Eclipse">Eclipseでの利用</a></h3>
+<p>
+archetype:generate で生成した SAStruts プロジェクトを Eclipse で利用したい場合は、mvn eclipse:eclipse を実行してください。
+</p>
+<pre>
+$ mvn eclipse:eclipse
+</pre>
+<p>
+実行後、設定ファイル (.project と .classpath) が自動生成されるので、Eclipse で外部プロジェクトで読むことが可能になります。
+</p>
+<p>
+Tomcat プラグインを利用している場合は、プロジェクトプロパティで Tomcat プラグインを有効にして、src/main/webapp をウェブアプリケーションのルートとして設定してください。
+src/main/webapp/WEB-INF/lib に必要な jar が保存されているので、Eclipse 上から HOT deploy 開発を行うことができます。
+</p>
+<p>
+Eclipse でプロジェクトの読み込み後、mvn clean や mvn package などを実行した場合は、再度 mvn eclipse:eclipse を実行してください。
+それらの mvn コマンドを実行すると、Tomcat プラグインで起動して利用する上で必要な src/main/webapp/WEB-INF/lib が削除されます。
+mvn eclipse:eclipse を再度実行することで、src/main/webapp/WEB-INF/lib が生成されます。
+</p>
+<p>
+Eclipse 上にプロジェクトを読み込んで、Tomcat プラグインで Tomcat を起動して利用する手順をまとめると以下になります。
+生成したウェブアプリケーションが起動しない場合は再度、以下の手順を確認してください。
+</p>
+<ol>
+<li>mvn eclipse:eclipse を実行</li>
+<li>(Eclipseに読み込んでいなければ) Eclipse にプロジェクトとして読み込み</li>
+<li>Eclipse 上でプロジェクトをリフレッシュ</li>
+<li>Eclipse 上でプロジェクトをクリーン・ビルド (自動ビルドにしておくとクリーンのみ)</li>
+<li>src/main/webapp/WEB-INF の lib と classes が生成されていることを確認</li>
+<li>Tomcat を起動</li>
+</ol>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2008, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

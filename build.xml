@@ -1,0 +1,24 @@
+<project name="SAStruts" default="dist" basedir=".">
+	<property name="ver" value="1.0.4-sp9.0"/>
+
+	<target name="dist">
+		<mkdir dir="target"/>
+		<zip zipfile="target/sa-struts-${ver}.zip">
+			<zipfileset prefix="sa-struts" dir=".">
+				<exclude name="**/target/**"/>
+				<exclude name="**/.settings/**"/>
+			</zipfileset>
+			<zipfileset prefix="sa-struts/lib" dir="target">
+				<include name="sa-struts-${ver}.jar"/>
+			</zipfileset>
+			<zipfileset prefix="sa-struts/libsrc" dir="target">
+			    <include name="sa-struts-${ver}-sources.jar"/>
+		    </zipfileset>
+			<zipfileset prefix="sa-struts/doc" dir="../sa-struts-www">
+				<exclude name="**/download/**"/>
+				<exclude name=".project"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+</project>

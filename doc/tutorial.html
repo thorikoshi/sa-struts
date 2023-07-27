@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts - Tutorial</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+    <li><a href="index.html">ホーム</a></li>
+    <li><a href="setup.html">セットアップ</a></li>
+    <li><a href="download.html">ダウンロード</a></li>
+    <li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a>
+		<ul>
+		    <li><a href="#index">インデックス</a></li>
+			<li><a href="#add">足し算</a></li>
+			<li><a href="#upload">ファイルアップロード</a></li>
+			<li><a href="#clientValidator">クライアントサイドバリデータ</a></li>
+		</ul>
+	</li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>チュートリアル</h2>
+<p>
+Seasar2はHOT deployに対応しているので、ソースコードの変更を
+アプリケーションサーバを再起動することなく認識できます。
+また、設定ファイルもほとんど書く必要がありません。
+</p>
+<p>
+<a href="setup.html#tutorial">チュートリアルのセットアップ</a>に従って、
+アプリケーションサーバを起動したら、Javaのコードや*.propertiesファイルをいろいろ
+書き換えながら、HOT deployの威力を実感してください。
+</p>
+
+<h3><a name="index">index</a></h3>
+<p>
+ブラウザでhttp://localhost:8080/sa-struts-tutorial/にアクセスしてください。
+いろんなアプリケーションを試せるページが表示されましたね。
+</p>
+<p>
+webapp(Webアプリケーションのルート)の直下を見てみましょう。index.jsp(index.html)は存在しません。
+それでは、どのページが表示されているのでしょうか。
+</p>
+<p>
+SAStrutsは、Webアプリケーションのルートにアクセスすると、
+ルートパッケージ.action.IndexActionというクラスがあれば、
+自動的にそのアクションに遷移します。
+ルートパッケージの詳細は、<a href="featureReference.html#Project">こちら</a>を参照ください。
+</p>
+<p>
+IndexAction.javaのソースコードは次のようになります。
+</p>
+<h5>IndexAction.java</h5>
+<pre>
+package tutorial.action;
+
+import org.seasar.struts.annotation.Execute;
+
+public class IndexAction {
+
+    @Execute(validator = false)
+    public String index() {
+        return "index.jsp";
+    }
+}
+</pre>
+<p>
+アクションに遷移した後、@Executeのついた実行メソッドが呼び出されます。
+実行メソッドを複数定義した場合に、どの実行メソッドが呼び出されるのかは、
+<a href="featureReference.html#ExecuteMethod">こちら</a>を参照してください。
+今回は、実行メソッドが1つしかないので、無条件にindex()が呼び出されます。
+</p>
+<p>
+メソッドの戻り値は遷移先になります。
+IndexAction#index()の場合は、index.jspに遷移します。
+web.xmlでVIEW_PREFIXが/WEB-INF/viewと指定されているので、
+具体的な遷移先は、/WEB-INF/view/index.jspになります。
+</p>
+<p>
+それでは、webapp/WEB-INF/struts-config.xmlを見てみましょう。
+アクションやアクションフォームの設定はまったくありません。
+SAStrutsは、URLに結びつく適切なアクションクラスを探し出し、
+そのアクションクラスの情報を元に、struts-config.xmlに相当する情報を組み立てています。
+</p>
+<p>
+webapp/WEB-INF/validation.xmlも見てみましょう。
+あら、そんなファイルないですね。
+SAStrutsは、検証用のアノテーションをプロパティに設定することで、
+validation.xmlに相当する情報を組み立てています。
+</p>
+
+<h3><a name="add">足し算</a></h3>
+<p>
+インデックスページから足し算のページにアクセスしてください。
+あるいは、ブラウザでhttp://localhost:8080/sa-struts-tutorial/add/にアクセスしても同じです。
+足し算のページが表示されましたね。
+</p>
+<p>
+/addに対応するアクションクラスは、tutorial.action.AddActionです。
+アクションの詳細は、<a href="featureReference.html#Action">こちら</a>を参照してください。
+</p>
+<p>
+AddAction.javaのソースコードは次のようになります。
+</p>
+<h5>AddAction.java</h5>
+<pre>
+package tutorial.action;
+
+import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.annotation.IntegerType;
+import org.seasar.struts.annotation.Required;
+
+public class AddAction {
+
+    @Required
+    @IntegerType
+    public String arg1;
+
+    @Required
+    @IntegerType
+    public String arg2;
+
+    public Integer result;
+
+    @Execute(validator = false)
+    public String index() {
+        return "index.jsp";
+    }
+
+    @Execute(input = "index.jsp")
+    public String submit() {
+        result = Integer.valueOf(arg1) + Integer.valueOf(arg2);
+        return "index.jsp";
+    }
+}
+</pre>
+<p>
+アクションはPOJO(特定のクラスを継承しない普通のJavaのクラス)で記述し、
+アクションの状態もアクションに定義します。
+関連する情報は同じクラスにあったほうがわかりやすいからです。
+</p>
+<p>
+Seasar2はpublicフィールドをプロパティとみなすことができるので、
+getter,setterは記述する必要はありません。
+publicフィールドは、ELやStrutsからでも認識できるようになっています。
+そのからくりに興味のある方は、org.seasar.struts.actionのソースを眺めてください。
+</p>
+<p>
+リクエストに対する処理は、<a href="featureReference.html#ExecuteMethod">実行メソッド</a>に記述します。
+実行メソッドには、@Executeをつけます。
+実行メソッドの戻り値は、遷移先のパスになります。
+</p>
+<p>
+実行メソッドが複数ある場合、どの実行メソッドが選択されるのかは、URLで指定するか、
+リクエストのパラメータのキーにメソッド名が含まれている(値が1文字以上あること)かどうかで決まります。
+</p>
+<p>
+次の例では、AddAction#index()が呼び出されます。
+/add/の後ろがメソッド名になります。
+</p>
+<pre>
+http://localhost:8080/sa-struts-tutorial/add/index
+</pre>
+<p>
+メソッドが定義されていない場合、index()が呼び出されるので、
+上記の呼び出しは、下記の呼び出しと一緒です。
+</p>
+<pre>
+http://localhost:8080/sa-struts-tutorial/add/
+</pre>
+<p>
+フォームをサブミットする場合は、ボタン系のname属性に実行メソッド名を指定します。
+次の例では、アクションクラスのsubmit()を呼び出します。
+</p>
+<pre>
+&lt;input type="submit" name="submit" value="サブミット"/&gt;
+</pre><p>
+@Executeの詳細は、<a href="annotationReference.html#Execute">こちら</a>を参照してください。
+</p>
+<p>
+アノテーション(バリデータ)による検証を行なうには、
+フィールドに<a href="annotationReference.html#Validation">検証用のアノテーション</a>をつけ、
+@Executeのvaliator属性をtrue(デフォルト)にします。
+validator=trueの場合は、検証結果がNGのときの遷移先をinput属性で指定する必要があります。
+バリデータの詳細は、<a href="featureReference.html#Validator">こちら</a>を参照してください。
+</p>
+<p>
+/add/index.jspは次のようになります。
+</p>
+<h5>/add/index.jsp</h5>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Add&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors/&gt;
+&lt;s:form&gt;
+&lt;html:text property="arg1"/&gt; + &lt;html:text property="arg2"/&gt;
+= ${f:h(result)}&lt;br /&gt;
+&lt;input type="submit" name="submit" value="サブミット"/&gt;
+&lt;/s:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>
+どのJSPでも共通に必要になるtaglibの宣言は、webapp/WEB-INF/view/common/common.jspで定義されています。
+common.jspの詳細は、<a href="featureReference.html#JSP">JSP</a>を参照してください。
+</p>
+<p>
+検証結果がNGのときのメッセージを表示させるために、
+html:errorsタグを定義します。
+</p>
+<p>
+サブミットされた値を受け取るためにs:formを定義します。
+action属性は自動的に計算されるので通常は指定する必要がありません
+</p>
+<p>
+入力値を受け取るために、html:textタグを定義します。
+property属性にアクションのプロパティ名を指定します。
+</p>
+<p>
+サブミット時にAddAction#submit()を呼び出すために、サブミットタグの
+name属性の値をsubmitに設定します。
+</p>
+<p>
+サブミットされると、入力したarg1、arg2の値がアクションに設定され、
+バリデータにより必須かどうか、整数かどうかが検証されます。
+</p>
+<p>
+バリデータの結果がNGだった場合は、input属性で指定したindex.jspに戻されます。
+バリデータの結果がOKの場合は、submit()が呼び出されます。
+</p>
+<p>
+submit()の戻り値がindex.jspなので、またindex.jspに遷移します。
+</p>
+<p>
+アクションのresultプロパティは、リクエストの属性に同じ名前でセットされているので、
+${f:h(result)}のようにして表示できます。
+f:hはHTMLをエスケープするファンクションです。
+詳細は、<a href="featureReference.html#JSP">こちら</a>を参照してください。
+</p>
+
+<h3><a name="upload">ファイルアップロード</a></h3>
+<p>
+インデックスページからファイルアップロードのページにアクセスしてください。
+あるいは、ブラウザでhttp://localhost:8080/sa-struts-tutorial/uploadにアクセスしても同じです。
+ファイルアップロードのページが表示されましたね。
+</p>
+<p>
+/uploadに対応するアクションクラスは、tutorial.action.UploadActionです。
+アクションの詳細は、<a href="featureReference.html#Action">こちら</a>を参照してください。
+</p>
+<p>
+UploadAction.javaのソースコードは次のようになります。
+</p>
+<h5>UploadAction.java</h5>
+<pre>
+package tutorial.action;
+
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.upload.FormFile;
+import org.seasar.framework.container.annotation.tiger.Binding;
+import org.seasar.framework.container.annotation.tiger.BindingType;
+import org.seasar.framework.exception.IORuntimeException;
+import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.annotation.Required;
+import org.seasar.struts.upload.S2MultipartRequestHandler;
+import org.seasar.struts.util.ActionMessagesUtil;
+
+public class UploadAction {
+
+    @Required
+    @Binding(bindingType = BindingType.NONE)
+    <b>public FormFile formFile;</b>
+
+    @Binding(bindingType = BindingType.NONE)
+    <b>public FormFile[] formFiles;</b>
+
+    public HttpServletRequest request;
+
+    public ServletContext application;
+
+    @Execute(validator = false)
+    public String index() {
+        SizeLimitExceededException e = (SizeLimitExceededException) request
+            .getAttribute(S2MultipartRequestHandler.SIZE_EXCEPTION_KEY);
+        if (e != null) {
+            ActionMessages errors = new ActionMessages();
+            errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
+                "errors.upload.size",
+                new Object[] { e.getPermittedSize(), e.getActualSize() }));
+            ActionMessagesUtil.addErrors(request, errors);
+        }
+        return "index.jsp";
+    }
+
+    @Execute(input = "index.jsp")
+    public String upload() {
+        ActionMessages messages = new ActionMessages();
+        upload(formFile, messages);
+        for (FormFile file : formFiles) {
+            upload(file, messages);
+        }
+        ActionMessagesUtil.addMessages(request, messages);
+        return "index.jsp";
+    }
+
+    protected void upload(FormFile file, ActionMessages messages) {
+        if (file.getFileSize() == 0) {
+            return;
+        }
+        String path = application.getRealPath("/WEB-INF/work/"
+            + file.getFileName());
+        try {
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(
+                path));
+            try {
+                out.write(file.getFileData(), 0, file.getFileSize());
+            } finally {
+                out.close();
+            }
+        } catch (IOException e) {
+            throw new IORuntimeException(e);
+        }
+        messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
+            "messages.upload.complete",
+            new Object[] { path }));
+    }
+}
+</pre>
+<p>
+ファイルアップロードは、FormFileを型にしたプロパティをActionまたはActionFormに定義し、
+FormFile経由でアップロードされたファイルを取得します。
+</p>
+<p>FormFileはインタフェースであるため、Seasar2では
+<a href="http://s2container.seasar.org/2.4/ja/DIContainer.html#AutoBindingMode">自動バインディング</a>
+の対象とみなされ、実行時にDIされない旨の警告が出てしまいます。
+これを防ぐためにプロパティには、@Binding(bindingType = BindingType.NONE)をつける必要があります。
+</p>
+<p>
+プロパティの型をFormFile[]のように配列指定することで、
+複数のFormFileを受け取ることができます。
+</p>
+<p>
+FormFileを配列で指定したときには、
+バリデーション用のアノテーションを指定することができません。
+実際にアップロードされたかどうかは、FormFile#getFileSize()が0を返すかどうかで判断してください。
+</p>
+<p>
+アップロードされたファイルのサイズが、
+あらかじめ決められた上限(struts-config.xmlのcontrollerタグのmaxFileSize属性の値)
+を超えた場合、SizeLimitExceededExceptionがスローされます。
+</p>
+<p>
+この例外が発生した場合は、indexメソッドに制御が移るので、
+indexメソッドで、SizeLimitExceededExceptionの存在をチェックすることで、
+アップロードされたファイルが上限を超えたのかチェックすることができます。
+</p>
+<p>
+/upload/index.jspは次のようになります。
+</p>
+<h5>/upload/index.jsp</h5>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Upload&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors/&gt;
+&lt;html:messages id="m" message="true"&gt;
+${f:h(m)}&lt;br /&gt;
+&lt;/html:messages&gt;
+
+&lt;s:form action="/upload" <b>enctype="multipart/form-data"</b>&gt;
+<b>&lt;input type="file" name="formFile" /&gt;</b>&lt;br /&gt;
+&lt;c:forEach varStatus="s" begin="0" end="1"&gt;
+<b>&lt;input type="file" name="formFiles[${s.index}]" /&gt;</b>&lt;br /&gt;
+&lt;/c:forEach&gt;
+
+&lt;input type="submit" name="upload" value="アップロード"/&gt;
+&lt;/s:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>
+ファイルをアップロードする場合は、formのenctype属性を"multipart/form-data"にします。
+アップロード用のタグ(&lt;input type="file" ... /&gt;)のname属性は、
+ActionまたはActionFormのプロパティ名にあわせます。
+FormFileを配列で受け取る場合は、name属性の値をプロパティ名[配列のインデックス]にします。
+</p>
+
+<h3><a name="clientValidator">クライアントサイドバリデータ</a></h3>
+<p>
+インデックスページからクライアントサイドバリデータのページにアクセスしてください。
+あるいは、ブラウザでhttp://localhost:8080/sa-struts-tutorial/clientValidator/にアクセスしても同じです。
+クライアントサイドバリデータのページが表示されましたね。
+</p>
+<p>
+何も入力していない状態で「aaaが必須」のボタンをクリックしてください。
+JavaScriptで検証が行なわれて「aaaは必須です。」のメッセージが表示されました。
+</p>
+<p>
+今度は同様に「bbbが必須」のボタンをクリックしてください。
+JavaScriptで検証が行なわれて「bbbは必須です。」のメッセージが表示されました。
+それぞれのボタンに対して異なる検証が行なわれていることがわかります。
+</p>
+<p>
+/clientValidatorに対応するアクションクラスは、tutorial.action.ClientValidatorActionです。
+アクションの詳細は、<a href="featureReference.html#Action">こちら</a>を参照してください。
+</p>
+<p>
+ClientValidatorAction.javaのソースコードは次のようになります。
+</p>
+<h5>ClientValidatorAction.java</h5>
+<pre>
+package tutorial.action;
+
+import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.annotation.Required;
+
+public class ClientValidatorAction {
+
+    @Required(target = "submit")
+    public String aaa;
+
+    @Required(target = "submit2")
+    public String bbb;
+
+    @Execute(validator = false)
+    public String index() {
+        return "index.jsp";
+    }
+
+    @Execute(validator = true, input = "index.jsp")
+    public String submit() {
+        return "index.jsp";
+    }
+
+    @Execute(validator = true, input = "index.jsp")
+    public String submit2() {
+        return "clientValidator.jsp";
+    }
+}
+</pre>
+<p>
+ボタン(メソッド)ごとに対象となるバリデータを変えたい場合、
+バリデータ用のアノテーションのtarget属性にメソッドの名前を指定します。
+複数のメソッドを指定したい場合は、カンマ(,)で区切ってください。
+</p>
+<p>
+/clientValidator/index.jspは次のようになります。
+</p>
+<h5>/clientValidator/index.jsp</h5>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Client Validator&lt;/title&gt;
+&lt;html:javascript formName="clientValidatorActionForm_submit"/&gt;
+&lt;html:javascript formName="clientValidatorActionForm_submit2"/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors/&gt;
+&lt;s:form action="/clientValidator"&gt;
+aaa:&lt;html:text property="aaa"/&gt;&lt;br /&gt;
+bbb:&lt;html:text property="bbb"/&gt;&lt;br /&gt;
+&lt;input type="submit" name="submit" value="aaaが必須"
+    onclick="forms[0].name='clientValidatorActionForm_submit';
+        return validateClientValidatorActionForm_submit(forms[0]);"/&gt;
+&lt;input type="submit" name="submit2" value="bbbが必須"
+    onclick="forms[0].name='clientValidatorActionForm_submit2';
+        return validateClientValidatorActionForm_submit2(forms[0]);"/&gt;
+&lt;/s:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>
+検証用のJavaScriptを出力するために、html:javascriptタグを使います。
+formName属性には、「アクション名 + Form + _ + メソッド名」を指定します。
+</p>
+<p>
+検証用のJavaScriptを呼び出すために、ボタン系タグのonclick属性で、
+form要素のname属性に上記のformName属性の値を代入した後に、
+「validate + formName属性の値」のメソッドを呼び出します。
+</p>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2006, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

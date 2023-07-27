@@ -1,0 +1,1221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts - Feature Reference</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+    <li><a href="index.html">ホーム</a></li>
+    <li><a href="setup.html">セットアップ</a></li>
+    <li><a href="download.html">ダウンロード</a></li>
+    <li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a>
+		<ul>
+			<li><a href="#Project">プロジェクト構成</a></li>
+			<li><a href="#Architecture">アーキテクチャ</a></li>
+			<li><a href="#Action">アクション</a></li>
+			<li><a href="#ExecuteMethod">実行メソッド</a></li>
+			<li><a href="#ActionForm">アクションフォーム</a></li>
+			<li><a href="#Validator">バリデータ</a></li>
+			<li><a href="#ValidateMethod">検証メソッド</a></li>
+			<li><a href="#ResetMethod">リセットメソッド</a></li>
+			<li><a href="#FileUpload">ファイルアップロード</a></li>
+			<li><a href="#Ajax">Ajax</a></li>
+			<li><a href="#Service">サービス</a></li>
+			<li><a href="#Transaction">トランザクション</a></li>
+			<li><a href="#DataExchange">データ変換</a></li>
+			<li><a href="#JSP">JSP</a></li>
+			<li><a href="#Scaffold">アプリケーションの自動生成</a></li>
+			<li><a href="#SQLFileToDto">SQLファイルからDTOの自動生成</a></li>
+		</ul>
+	</li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>機能リファレンス</h2>
+<p>
+SAStrutsで使われている機能の説明をします。
+</p>
+
+<h3><a name="Project">プロジェクト構成</a></h3>
+<p>
+SAStrutsでは、ルートパッケージの配下にactionなどのパッケージを作って、
+そこに必要なファイルを格納します。
+ルートパッケージ名は、任意の名前を指定することができます。
+例えば、sa-struts-tutorialプロジェクトでは、ルートパッケージ名は、tutorialになっています。
+</p>
+<p>
+ルートパッケージ名は、convention.diconで指定します。
+sa-struts-tutorialプロジェクトでは、src/main/resourcesで次のように指定されています。
+</p>
+<h5>convention.dicon</h5>
+<pre>
+&lt;components&gt;
+    &lt;component
+        class="org.seasar.framework.convention.impl.NamingConventionImpl"&gt;
+        <b>&lt;initMethod name="addRootPackageName"&gt;
+            &lt;arg&gt;"tutorial"&lt;/arg&gt;
+        &lt;/initMethod&gt;</b>
+    &lt;/component&gt;
+    &lt;component
+        class="org.seasar.framework.convention.impl.PersistenceConventionImpl"/&gt;
+&lt;/components>
+</pre>
+<p>
+<a href="#Action">アクション</a>は、ルートパッケージ.actionに格納します。
+例えば、http://ホスト名/プロジェクト名/xxx/のURLに対応するアクションクラスは、
+XxxActionという名前にします。
+</p>
+<p>
+<a href="#ActionForm">アクションフォーム</a>は、ルートパッケージ.formに格納します。
+例えば、XxxActionで利用するアクションフォームは、XxxFormという名前にします。
+アクションフォームの役割は、リクエストのパラメータを管理することです。
+</p>
+<p>
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc_entity.html">エンティティ</a>は、
+ルートパッケージ.entityに格納します。
+エンティティとは、データベースに永続化されるデータです。
+エンティティの名前は任意の名前にすることができますが、
+通常は、テーブルの名前にあわせます。
+</p>
+<p>
+エンティティに対する操作を格納するクラスをサービスといいます。
+サービスは、ルートパッケージ.serviceに格納します。
+名前は、XxxServiceのようにServiceで終わるようにします。
+Xxxは、任意の名前を指定することができますが、通常は、エンティティ名にします。
+</p>
+<p>
+ユーティリティは、ルートパッケージ.utilに格納します。
+クラス名は自由につけてかまいません。
+ユーティリティクラスは、通常staticメソッドで構成されています。
+</p>
+<p>
+<a href="#JSP">JSP</a>は、<a href="#Action">アクション</a>に対応するディレクトリに格納します。
+例えば、XxxActionで使うJSPは、/xxx/に格納すると良いでしょう。
+</p>
+
+<h3><a name="Architecture">アプリケーションアーキテクチャ</a></h3>
+<p>
+SAStrutsは、MVC(Model View Controller)のアーキテクチャに基づいていて、
+Modelは<a href="http://s2container.seasar.org/2.4/ja/s2jdbc_entity.html">エンティティ</a>、
+Viewは<a href="#JSP">JSP</a>、Controllerは<a href="#Action">アクション</a>になります。
+</p>
+<p>
+<a href="#Action">アクション</a>は、複数の<a href="#ExecuteMethod">実行メソッド</a>
+を持つことができ、通常は、1ユースケースを1アクションにマッピングします。
+複数の画面で構成される意味のある単位をユースケースだと、とらえればよいでしょう。
+プレゼンテーション(表示)に関するロジックは、アクションに定義します。
+</p>
+<p>
+ビジネスロジックは、エンティティかサービスに定義します。
+データアクセスのロジックもビジネスロジックの中に含めて良いでしょう。
+ビジネスロジックがデータアクセスフレームワークに依存しないように、
+データアクセスのロジックをDao(Data Access Object)に切り出す方法もありますが、
+開発の途中でデータアクセスフレームワークを変えることは、現実的にはほとんどないので、
+データアクセスのロジックもビジネスロジックの中に含めて良いと思っています。
+</p>
+<p>
+ビジネスロジックをエンティティとサービスのどちらに定義するのかは、とても重要な問題です。
+データアクセスロジックは、サービスに定義したほうが良いでしょう。
+なぜかというと、検索系のメソッドは、エンティティを取得するためのメソッドなので、エンティティ自身には定義できません。
+エンティティのstaticメソッドとして定義すれば、できないこともありませんが、
+staticメソッドだと、テスト用にオーバーライドすることができないので、やめておいたほうが良いでしょう。
+</p>
+<p>
+また、更新系のメソッドは、エンティティに持たせることもできますが、
+そのためには、エンティティが更新系のメソッドが定義されている特定のクラスを継承する必要があり、
+最近のPOJO指向とかみ合いません。データアクセスロジックは、エンティティではなく、サービスに定義するほうが良いのです。
+</p>
+<p>
+エンティティの導出プロパティは、エンティティに定義したほうが良いでしょう。
+導出プロパティとは、計算によって求められるようなプロパティで、getterメソッドとして実装します。
+導出プロパティは、エンティティのプロパティの1つなので、エンティティに定義するのが自然です。
+</p>
+<p>
+データアクセスロジックと導出プロパティ以外は、ケースバイケースで、
+エンティティとサービスのどちらに定義するのか判断する必要があります。
+場合によっては、エンティティとサービスで処理を分担する必要もあるでしょう。
+</p>
+<p>
+ケースバイケースっていわれたら、どうしたら良いか困りますよね。
+私がいつも使ってい方法は、最も短いソースコードですむ方法を選ぶということです。
+短いソースコードは、バグが入り込む余地も少なくなるからです。
+この方法だけで、すべての問題が解決するわけではありませんが、1つの判断基準にはなるでしょう。
+</p>
+<p>
+最後に、特定のエンティティに関連する定数（区分値・属性値）は、それぞれに対応するエンティティに定義しておきます。
+</p>
+<h3><a name="Action">アクション</a></h3>
+<p>
+リクエストに応じて起動されるクラスをアクションといいます。
+Strutsでは、URLとアクションの関係をstruts-config.xmlに記述しますが、
+SAStrutsでは、次のルールに従って自動的に決まるので、
+設定ファイルを書く必要がありません。
+</p>
+<p>
+http://localhost:8080/sa-struts-tutorial/login/にアクセスしたとします。
+sa-struts-tutorialはWebアプリケーション名です。
+SAStrutsは、次のような手順でURLをActionクラスに変換します。
+</p>
+<ul>
+<li>
+Webアプリケーション名の後ろのパス(/login/)の最後のスラッシュをActionに変換(/loginAction)します。
+スラッシュがない場合は後ろにActionを付け加えます。
+</li>
+<li>
+最後のスラッシュの直後を大文字(/LoginAction)にします。
+</li>
+<li>
+スラッシュをドットに変換(.LoginAction)します。
+</li>
+<li>
+ルートパッケージ名.actionを先頭につけます(ルートパッケージ名.action.LoginAction)。
+ルートパッケージ名の詳細は、<a href="#Project">こちら</a>を参照してください。
+</li>
+<li>
+最終的に、/login/に対応するアクションクラスはtutorial.action.LoginActionになります。
+</li>
+</ul>
+<p>
+アクション用のパスがない場合、ルートパッケージ.action.IndexActionがあれば、
+そのアクションが呼び出されます。
+例えば、http://localhost:8080/sa-struts-tutorial/にアクセスすると、
+tutorial.action.IndexActionが呼び出されます。
+</p>
+<p>
+IndexActionを呼び出したいときは、Webのルートにindex.jspをおかないようにしてください。
+index.jspの方が優先されて呼び出されるためです。
+</p>
+<p>
+大規模なアプリケーションでは、パスを分割することもできます。
+例えば、/aaa/bbb/のパスに対応するアクションクラスは、
+ルートパッケージ.action.aaa.BbbActionになります。
+</p>
+<p>
+アクションはPOJO(普通のJavaのクラス)にします。
+StrutsのようにActionを継承する必要はありません。
+</p>
+<p>
+スコープはリクエストです。Strutsのようにシングルトンじゃないのは、
+アクションフォームなどのリクエストやセッションで管理されているオブジェクトを
+プロパティとして受け取るためです。
+リクエストで管理されているので、Strutsのようにスレッドセーフかどうか気にする必要はありません。
+</p>
+<p>
+アクションフォームを利用するには、次のようにフィールドを定義し、
+@ActionFormと@Resourceをつけます。
+@Resourceは、フィールドを設定するようにSeasar2に指示するためのアノテーションです。
+フィールド名は、クラス名の先頭を小文字にしたものにします。
+</p>
+<pre>
+@ActionForm
+@Resource
+protected AddForm addForm;
+
+</pre>
+<p>
+JSPに出力するだけの値は、アクションにプロパティを定義し、
+そのプロパティ経由で、JSPに出力します。
+リクエストのパラメータは、アクションフォームで受け取るようにしてください。
+</p>
+<p>
+ログインしたユーザに関する情報など、
+アクションフォーム以外をセッションで管理する場合、
+ルートパッケージ.dtoにXxxDto作成し、@Componentでセッションで管理されるように定義します。
+</p>
+<p>
+Seasar2は、Dtoのフィールドがpublicで宣言されている場合、
+自動的にプロパティとみなすことができます。
+</p>
+<pre>
+<b>@Component(instance = InstanceType.SESSION)</b>
+public class UserDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    
+    <b>public String userName;</b>
+    ...
+}
+</pre>
+<p>
+作成したUserDtoを利用するには、次のようにフィールドを定義し、
+@Resourceをつけます。
+(以下のコードは、スコープがpublicでないためにJSPから参照できないので注意して下さい。）
+フィールド名は、クラス名の先頭を小文字にしたものにします。
+</p>
+<pre>
+@Resource
+protected UserDto userDto;
+
+</pre>
+<p style="background-color:red">
+Dtoをセッションに保存している場合に、DtoのHOT deployが効かない場合があります。
+Tomcatを使っているなら、<a href="fileReference.html#context">context.xml</a>を
+リンクの指示に従って修正してください。
+</p>
+<p>
+ビジネスロジックをサービスに格納する場合、ルートパッケージ.serviceにXxxServiceを作成します。
+</p>
+<pre>
+public class XxxService {
+    ...
+}
+</pre>
+<p>
+作成したXxxServiceを利用するには、次のようにフィールドを定義し、
+@Resourceをつけます。フィールド名は、クラス名の先頭を小文字にしたものにします。
+</p>
+<pre>
+@Resource
+protected XxxService xxxService;
+</pre>
+<p>
+HttpServletRequestやHttpServletResponseなどのServlet API関連のオブジェクトは、
+次のようにフィールドを定義し、@Resourceをつけます。
+フィールド名は、下記のとおりにしてください。
+<pre>
+public class MyAction {
+
+    @Resource
+    protected HttpServletRequest request;
+
+    @Resource
+    protected HttpServletResponse response;
+    
+    @Resource
+    protected HttpSession session;
+    
+    @Resource
+    protected ServletContext application;
+    ...
+}
+</pre>
+<p>
+リクエストに対する処理は、
+<a href="#ExecuteMethod">実行メソッド</a>に記述します。
+</p>
+
+<h3><a name="ExecuteMethod">実行メソッド</a></h3>
+<p>
+リクエストを処理するのがアクションの実行メソッドです。
+実行メソッドは、名前は任意、
+<a href="annotationReference.html#Execute">@Execute</a>がついていて、
+戻り値はString、引数は無しにする必要があります。
+</p>
+<pre>
+@Execute
+public String xxx() {
+    ...
+    return ...;
+}
+</pre>
+<p>
+実行メソッドの戻り値は、遷移先のパスです。
+パスが/ではじまっていない場合、アクションのパスからみた相対パスとみなされます。
+</p>
+<p>
+例えば、/add/のアクションで戻り値をindex.jspとした場合、
+/add/index.jspとみなされます。
+さらに<a href="fileReference.html#web">web.xml</a>
+でVIEW_PREFIXが指定されていると、プレフィックスとしてパスに追加されます。
+sa-struts-tutorialプロジェクトでは、VIEW_PREFIXが/WEB-INF/viewと指定されているので
+/WEB-INF/view/add/index.jspに遷移することになります。
+</p>
+<p>
+パスが/ではじまっている場合、Webアプリケーションのルートからの相対パスと
+みなされます。例えば、戻り値を/select/とした場合、
+http://localhost:8080/sa-struts-tutorial/select/に遷移します。
+</p>
+<p>
+デフォルトではフォワードで遷移します。
+リダイレクトで遷移したい場合は、
+パスの<b>最後</b>に<b>redirect=true</b>を追加します。
+=の前後に余分な空白は含めないでください。
+redirect=trueの部分は、実際に実行されるときには、消去されます。
+</p>
+<pre>
+...
+return "xxx.jsp?redirect=true";
+</pre>
+<pre>
+...
+return "xxx.jsp?key=value&amp;redirect=true";
+</pre>
+<p>
+別のサイトに遷移したい場合は、パスをhttpやhttpsではじめ、
+リダイレクトするように指定します。
+</p>
+<pre>
+...
+return "https://ホスト名/アプリケーション名/パス/?redirect=true";
+</pre>
+<p>
+ファイルのダウンロードのように既にレスポンスに出力済みの場合は、
+遷移先(戻り値)はnullにしてください。
+</p>
+<p>
+1つのアクションに複数の実行メソッドを定義することができます。
+どの実行メソッドが選択されるのかは、URLで指定するか、
+リクエストのパラメータのキーにメソッド名が含まれている(値が1文字以上あること)か、
+リクエストのSAStruts.methodパラメータにメソッド名が指定されているかどうかで決まります。
+</p>
+<p>
+次の例では、AddAction#index()が呼び出されます。
+</p>
+<pre>
+http://localhost:8080/sa-struts-tutorial/add/index
+</pre>
+<p>
+メソッドが定義されていない場合、index()が呼び出されるので、
+上記の呼び出しは、下記の呼び出しと一緒です。
+</p>
+<pre>
+http://localhost:8080/sa-struts-tutorial/add/
+</pre>
+<p>
+@ExecuteでURLのパターン(urlPattern)を指定することで、
+URLがパターンに一致したときにそのメソッドが呼び出されるように指定できます。
+また、URLの一部をパラメータの値として受け取ることができます。
+</p>
+<p>
+内部的な仕組みとしては、RoutingFilterでURLがパターンに一致するか調べます。
+一致した場合は、SAStruts.methodをキーにしてそのメソッド名をパラメータに追加します。
+パターンの{パラメータ名}の部分は、
+パラメータ名がキーで実際のURLで一致した部分を値としてパラメータに追加します。
+パラメータをクエリストリングとして組み立てた後に、
+Strutsにフォワードします。
+</p>
+例えば、EmployeeAction#edit()が次のように定義されているとします。
+</p>
+<pre>
+@Execute(urlPattern = "edit/{id}")
+public String edit() {
+    ...
+}
+</pre>
+<p>
+/employee/list.jspに次のようなアンカータグが定義されているとします。
+</p>
+<pre>
+&lt;a href="edit/1"&gt;編集画面へ&lt;/a&gt;
+</pre>
+<p>
+アンカータグをクリックするとRoutingFilterがURL(edit/1)がパターン(edit/{id})に一致していることを検知し、
+次のようなURLを組み立ててStrutsにフォワードします。
+</p>
+<pre>
+/employee.do?id=1&SAStruts.method=edit
+</pre>
+<p>
+SAStrutsは、idパラメータの値をアクションのプロパティに設定し、
+SAStruts.methodパラメータで指定されているeditメソッドを呼び出します。
+</p>
+<p>
+フォームをサブミットする場合は、ボタン系タグのname属性に実行メソッド名を指定します。
+次の例では、confirmメソッドを呼び出します。
+</p>
+<pre>
+&lt;input type="submit" name="confirm" value="確認"/&gt;
+</pre>
+<p>
+実行メソッドを呼び出す前に、<a href="#Validator">アノテーションを使った検証</a>を行なうには、
+@Executeのvalidator要素をtrueにします。デフォルトはtrueです。
+</p>
+<p>
+validator=trueの場合は、検証結果がNGのときの遷移先のパスをinput要素で指定します。
+パスの書き方は、実行メソッドの戻り値の書き方に加えて、
+urlPattern要素のようにパラメータをパス({パラメータ名})で指定することもできます。
+アノテーションを使った検証の詳細は、<a href="#Validator">こちら</a>を参照してください。
+</p>
+<pre>
+@Execute(validator = true, input = "edit.jsp")
+</pre>
+<p>
+実行メソッドを呼び出す前に、独自の検証を行なうには、
+@Executeのvalidate要素でアクションフォームの検証メソッド名を指定します。
+</p>
+<p>
+validate要素を指定した場合は、検証結果がNGのときの遷移先のパスをinput要素で指定します。
+validator要素とvalidate要素を両方指定した場合には、
+<a href="#Validator">アノテーションを使った検証</a>が先に実行され、
+その後にvalidateで指定した検証メソッドが実行されます。
+独自に定義する検証メソッドの詳細は、<a href="#ValidateMethod">こちら</a>を参照してください。
+</p>
+<pre>
+@Execute(validate = "validate", input = "login.jsp")
+</pre>
+<p>
+roles要素を指定して、メソッドを呼び出すのに必要なロールを設定できます。
+複数のロールを設定するには、カンマ(,)で区切ります。
+必要なロールがない場合、org.seasar.struts.exception.NoRoleRuntimeExceptionがスローされます。
+NoRoleRuntimeExceptionがスローされた場合に、適切なページ(/error/norole.jsp)に遷移して、
+適切なメッセージ(errors.norole)を表示するには次のように設定します。
+</p>
+<h5><a href="fileReference.html#MessageResources">application_jp.properties</a></h5>
+<pre>
+errors.norole=適切なロールがありません。
+</pre>
+<h5>struts-config.xml</h5>
+<pre>
+&lt;global-exceptions&gt;
+    &lt;exception path="/error/norole.jsp" key="errors.norole"
+        type="org.seasar.struts.exception.NoRoleRuntimeException"/&gt;
+&lt;/global-exceptions&gt;
+</pre>
+<h5>/error/norole.jsp</h5>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Role error&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors property="errors.norole"/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h3><a name="ActionForm">アクションフォーム</a></h3>
+<p>
+アクションフォームとは、リクエストのパラメータを管理するクラスです。
+SAStrutsでは、アクションフォームもPOJOで記述することができます。
+</p>
+<p>
+リクエストのパラメータと同じ名前のプロパティをアクションフォームに定義します。
+入力値を受け取るためのプロパティは、検証エラーになっても値を格納できるように
+型をStringあるいはbooleanで定義してください。
+Seasar2は、アクションフォームのフィールドがpublicで宣言されている場合、
+自動的にプロパティとみなすことができます。
+</p>
+<p>
+アクションフォームを使用する場合は、アクションのプロパティでリクエストのパラメータを
+受け取ることができなくなるので注意して下さい。
+</p>
+<p>
+アクションフォームクラスは、ルートパッケージ.formにおき、クラス名の最後は、Formで終わるようにします。
+(バージョン 1.0.3-rc1 よりアクションフォームは ～Dtoに代わって ～Formが推奨になりました。)
+</p>
+<p>
+SAStrutsのアクションフォームは、デフォルトだとリクエストスコープで管理されますが、
+次のようにアノテーションを指定することで、
+セッションスコープで管理することもできます。
+セッションスコープで管理するコンポーネントは、
+java.io.Serializableをimplementsする必要があります。
+</p>
+<pre>
+@Component(instance = InstanceType.SESSION)
+public class XxxForm implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    ...
+}
+</pre>
+<p>
+アクションフォームをセッションに保存している場合、
+@ExecuteのremoveActionForm要素をtrueに設定しておくと、
+実行メソッドの正常終了時にセッションからアクションフォームが削除されます。
+デフォルトはfalseで、削除しません。
+</p>
+<p style="background-color:red">
+アクションフォームをセッションに保存する設定のときに、アクションフォームのHOT deployが効かない場合があります。
+Tomcatを使っているなら、<a href="fileReference.html#context">context.xml</a>を
+リンクの指示に従って修正してください。
+</p>
+<p>
+<a href="#Validator">アノテーションを使った検証</a>は次のように、
+フィールドに対して指定します。
+アノテーションを使った検証の詳細は、<a href="#Validator">こちら</a>
+を参照してください。
+</p>
+<pre>
+@Required
+public String arg1;
+</pre>
+<p>
+独自の検証は、次のように、検証メソッドでおこないます。
+検証メソッドの詳細は、<a href="#ValidateMethod">こちら</a>
+を参照してください。
+</p>
+<pre>
+public ActionMessages validate() {
+    ActionMessages errors = new ActionMessages();
+    ...
+    return errors;
+}
+</pre>
+<p>
+チェックボックスなどの初期化は、次のように、リセットメソッドでおこないます。
+リセットメソッドの詳細は、<a href="#ResetMethod">こちら</a>を参照してください。
+</p>
+<pre>
+public void reset() {
+    checked = false;
+}
+</pre>
+
+<h3><a name="Validator">バリデータ</a></h3>
+<p>
+アノテーションを使った検証を行なうには、
+アクションフォームのフィールドに検証用のアノテーションを指定します。
+検証用アノテーションの詳細は、<a href="annotationReference.html#Validation">こちら</a>を参照してください。
+</p>
+<pre>
+@Required
+public String userName;
+</pre>
+<p>
+検証結果がNGの場合に出力されるメッセージは、<a href="fileReference.html#MessageResources">メッセージリソース</a>に
+記述します。検証用アノテーションとメッセージのキーは次のようになっています。
+</p>
+<table>
+<tr><th>アノテーション</th><th>メッセージのキー</th></tr>
+<tr><td>Required</td><td>errors.required</td></tr>
+<tr><td>Validwhen</td><td>開発者が指定</td></tr>
+<tr><td>Minlength</td><td>errors.minlength</td></tr>
+<tr><td>Maxlength</td><td>errors.maxlength</td></tr>
+<tr><td>Minbytelength</td><td>errors.minbytelength</td></tr>
+<tr><td>Maxbytelength</td><td>errors.maxbytelength</td></tr>
+<tr><td>Mask</td><td>errors.invalid</td></tr>
+<tr><td>IntRange</td><td>errors.range</td></tr>
+<tr><td>LongRange</td><td>errors.range</td></tr>
+<tr><td>FloatRange</td><td>errors.range</td></tr>
+<tr><td>DoubleRange</td><td>errors.range</td></tr>
+<tr><td>ByteType</td><td>errors.byte</td></tr>
+<tr><td>ShortType</td><td>errors.short</td></tr>
+<tr><td>IntegerType</td><td>errors.integer</td></tr>
+<tr><td>LongType</td><td>errors.long</td></tr>
+<tr><td>FloatType</td><td>errors.float</td></tr>
+<tr><td>DoubleType</td><td>errors.double</td></tr>
+<tr><td>DateType</td><td>errors.date</td></tr>
+<tr><td>CreditCardType</td><td>errors.creditcard</td></tr>
+<tr><td>EmailType</td><td>errors.email</td></tr>
+<tr><td>UrlType</td><td>errors.url</td></tr>
+</table>
+<p>
+メッセージをカスタマイズしたい場合は、キーに対応する値を書き換えてください。
+</p>
+<p>
+特定のプロパティのみ、メッセージをカスタマイズしたい場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に、
+メッセージを追加し、検証用のアノテーションのmsg要素で指定します。
+</p>
+<pre>
+errors.required2={0}は必須だぜ。
+</pre>
+<pre>
+@Required(msg = @Msg(key = "errors.required2"))
+</pre>
+<p>
+メッセージには、{位置}で引数を渡すことができます。
+位置は0からはじまります。
+検証用のアノテーションで、引数を指定するには、arg0, arg1, ..., args要素で指定します。
+</p>
+<pre>
+@Required(arg0 = @Arg(key = "ほげ", resource = false))
+</pre>
+<pre>
+@Validwhen(test = "((validwhen1Text == null) or (*this* != null))",
+    msg = @Msg(key = "errors.required.other"),
+    args = @Arg(key = "validwhen1Text", resource = false, position = 1))
+</pre>
+<p>
+最初の引数は、プロパティ名が自動的に設定されます。
+プロパティの表示をカスタマイズしたい場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=...</b>のエントリを追加してください。
+</p>
+<pre>
+labels.userName=ユーザ名
+</pre>
+<p>
+target要素を指定することで、特定のメソッドの場合だけ、検証を行なうようにすることもできます。
+複数のメソッドを指定する場合は、カンマで区切ります。
+target要素が指定されていない場合、@Executeでvalidator=trueのすべての実行メソッドが対象になります。
+次の例では、secondプロパティは、goThirdメソッドが呼び出されるときだけ、
+入力必須になります。
+</p>
+<pre>
+@Required(target = "goThird")
+public String second;
+</pre>
+<p>
+JSPでエラーメッセージを出力するには、次のようにhtml:errorsタグを使います。
+</p>
+<pre>
+&lt;%@taglib prefix="html" uri="http://struts.apache.org/tags-html"%&gt; 
+...
+&lt;html:errors /&gt;
+</pre>
+<p>
+独自の検証用アノテーションを追加したい場合は、
+org.seasar.struts.validator.S2FieldChecksを参考にして、
+検証ロジックを実装し、そのメソッドをvalidator-rules.xmlで指定します。
+</p>
+<p>
+そして、validator-rules.xmlで指定したvalidatorの名前を
+<a href="annotationReference.html#Validator">Validatorアノテーション</a>で
+指定してください。
+</p>
+<p>
+JavaScriptを使ったクライアントサイドの検証は、
+<a href="tutorial.html#clientValidator">このチュートリアル</a>を参照してください。
+</p>
+
+<h3><a name="ValidateMethod">検証メソッド</a></h3>
+<p>
+検証用アノテーションではできないような個別の検証は、検証メソッドを使います。
+検証メソッドは、アクションフォーム、アクションのどちらにも記述できますが、
+検証対象のデータを持っているアクションフォームに記述したほうがいいでしょう。
+</p>
+<p>
+検証メソッドは、名前は任意、引数は無し、戻り値はActionMessagesにする必要があります。
+戻り値のActionMessagesが空でない場合、検証結果はNGだとみなされます。
+</p>
+<pre>
+public ActionMessages validate() {
+    ActionMessages errors = new ActionMessages();
+    ...
+    return errors;
+}
+</pre>
+<p>
+実行メソッドで、どの検証メソッドを使うのかは、validate要素で指定します。
+validate要素を指定した場合は、
+input要素に検証結果がNGのときの遷移先も指定する必要があります。
+</p>
+<pre>
+@Execute(validate = "validate", input = "login.jsp")
+</pre>
+<p>
+任意のメソッドで検証を行なうには、検証結果がNGの場合に、
+ActionMessagesExceptionをスローします。
+</p>
+<pre>
+public void validateLogin(String userName, String password) {
+    if (!userName.equals(password)) {
+        throw new ActionMessagesException("errors.invalid.login");
+    }
+}
+</pre>
+<p>
+ActionMessagesExceptionの処理は、app.diconに<br />
+org.seasar.struts.interceptor.ActionMessagesThrowsInterceptorを登録し、
+customizer.diconで登録したインターセプタを使うように記述します。
+app.diconとcustomizer.diconは、sa-struts-tutorialプロジェクトの場合、
+src/main/resourcesにおかれています。
+</p>
+<h5>app.dicon</h5>
+<pre>
+&lt;component name="actionMessagesThrowsInterceptor"
+    class="org.seasar.struts.interceptor.ActionMessagesThrowsInterceptor"/&gt;
+</pre>
+<h5>customizer.dicon</h5>
+<pre>
+&lt;component name="actionCustomizer"
+    class="org.seasar.framework.container.customizer.CustomizerChain"&gt;
+    ...
+    &lt;initMethod name="addAspectCustomizer"&gt;
+        &lt;arg&gt;"actionMessagesThrowsInterceptor"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    ...
+&lt;/component&gt;
+</pre>
+
+<h3><a name="ResetMethod">リセットメソッド</a></h3>
+<p>
+チェックボックス(&lt;input type="checkbox" .../&gt;)や
+複数選択リスト(&lt;select multiple="multiple" ...&gt;&lt;/select&gt;)
+は、選択された値だけがリクエストで送信されます。
+何も選択しなかった場合は、何も送信されません。
+そのため、アクションフォームをセッションで管理している場合、
+チェックボックスや複数選択リストで選択状態をすべて解除しても
+何もリクエストで送信されないため、元の状態のまま残ってしまいます。
+</p>
+<p>
+この問題に対応するために用意されているのが、
+アクションフォームのリセットメソッドです。
+リセットメソッドは、リクエストパラメータをアクションフォームにセットする直前に呼び出されるため、
+リセットメソッドで、チェックボックスや複数選択リストのプロパティを選択されていない状態に更新することで、
+リクエストで何も送られてこなかった場合でも、選択状態を解除することができます。
+</p>
+<pre>
+@Component(instance = InstanceType.SESSION)
+public class XxxForm implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    
+    public boolean foo;
+    
+    public String[] bar;
+    ...
+    public void reset() {
+        foo = false;
+        bar = new String[0];
+    }
+}
+</pre>
+<p>
+リセットメソッドは、実行メソッドごとに指定することができます。
+デフォルトは、resetになります。
+</p>
+<pre>
+@Execute(reset = "リセットメソッド名", ...)
+</pre>
+
+<h3><a name="FileUpload">ファイルアップロード</a></h3>
+<p>
+ファイルアップロードは、FormFileを型にしたプロパティをActionまたはActionFormに定義し、
+FormFile経由でアップロードされたファイルを取得します。
+</p>
+<p>
+プロパティの型をFormFile[]のように配列指定することで、
+複数のFormFileを受け取ることができます。
+詳しくは<a href="tutorial.html#upload">チュートリアルのファイルアップロード</a>を参照してください。
+</p>
+
+<h3><a name="Ajax">Ajax</a></h3>
+<p>
+SAStrutsは、任意のAjaxのライブラリと組み合わせて使えます。
+ここでは<a href="http://jquery.com/">jQuery</a>を使った例で説明します。
+</p>
+<p>
+アクションの実行メソッドでは、ResponseUtil.write("文字列")を使って、
+レスポンスに文字列を書き込みます。
+画面遷移をするわけではないので、戻り値はnullになります。
+</p>
+<pre>
+@Execute(validator = false)
+public String hello() {
+    ResponseUtil.write("こんにちは");
+    return null;
+}
+</pre>
+<p>
+JSPでは、jQueryを使うためにヘッダでjquery.jsを取り込みます。
+あるタグをアクションの実行メソッドがレスポンスに書き込んだ値で置き換える場合は、
+$('タグのid').load('実行メソッド名');を呼び出します。
+</p>
+<pre>
+&lt;script src="${f:url('/js/jquery.js')}"&gt;&lt;/script&gt;
+...
+&lt;span id="message"&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;input type="button" value="hello"
+    onclick="$('#message').load('hello');"/&gt;
+</pre>
+<p>
+アクションにパラメータを渡す場合は、アクションにパラメータ用のプロパティを追加し、
+jQuery側は、load()の二番目の引数で指定します。
+</p>
+<pre>
+public String greeting;
+...
+@Execute(validator = false)
+public String hello() {
+    ResponseUtil.write(greeting);
+    return null;
+}
+</pre>
+<pre>
+&lt;input type="button" value="hello"
+    onclick="$('#message').load('hello',{'greeting':'Hello'});"/&gt;
+</pre>
+<p>
+URLを使って、パラメータを渡すこともできます。
+<pre>
+public String greeting;
+...
+@Execute(validator = false, urlPattern = "hello/{greeting})
+public String hello() {
+    ResponseUtil.write(greeting);
+    return null;
+}
+</pre>
+<pre>
+&lt;input type="button" value="hello"
+    onclick="$('#message').load('hello/Hello');"/&gt;
+</pre>
+</p>
+
+<h3><a name="Service">サービス</a></h3>
+<p>
+機能中心のビジネスロジックは、サービスで実装します。
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc.html">S2JDBC</a>に
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc_service.html">サービスの雛形</a>が
+用意されているので、それを利用すると良いでしょう。
+</p>
+<p>
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc.html">S2JDBC</a>を
+使う場合、データベースへ接続するための設定は、jdbc.diconに記述します。
+jdbc.diconの設定は、<a href="http://s2container.seasar.org/2.4/ja/jdbc.html">こちら</a>を参照してください。
+sa-struts-tutorialプロジェクトの場合、jdbc.diconは、src/main/resourcesにおかれています。
+</p>
+<p>
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc.html">S2JDBC</a>自体の設定は、
+s2jdbc.diconに記述します。
+s2jdbc.diconの設定は、<a href="http://s2container.seasar.org/2.4/ja/s2jdbc_setup.html">こちら</a>を参照してください。
+sa-struts-tutorialプロジェクトの場合、jdbc.diconは、src/main/resourcesにおかれています。
+</p>
+<p>
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc.html">S2JDBC</a>は、
+<a href="http://s2container.seasar.org/2.4/ja/s2jdbc_manager.html">JdbcManager</a>経由で利用します。
+JdbcManagerをサービスで利用するには、
+次のようにフィールドを定義し、@Resourceをつけます。
+</p>
+<pre>
+@Resource
+protected JdbcManager jdbcManager;
+</pre>
+
+<h3><a name="Transaction">トランザクション</a></h3>
+<p>
+SAStrutsでは、トランザクション処理は、JTAの実装に任せていて、
+SAStruts自体がトランザクション処理に関与することはありません。
+JTAの設定は、s2container.diconで行ないます。
+詳細は、<a href="http://s2container.seasar.org/2.4/ja/transaction.html">こちら</a>を参照してください。
+sa-struts-tutorialプロジェクトの場合、s2container.diconは、src/main/resourcesにおかれています。
+</p>
+<p>
+アクションやサービスのメソッドが呼び出されたときに、
+自動的にトランザクションを開始するには、customizer.diconにトランザクション用の設定を記述します。
+sa-struts-tutorialプロジェクトの場合、customizer.diconは、src/main/resourcesにおかれています。
+</p>
+<h5>
+cutomizer.dicon
+</h5>
+<pre>
+&lt;component name="actionCustomizer"
+  class="org.seasar.framework.container.customizer.CustomizerChain"&gt;
+  &lt;initMethod name="addCustomizer"&gt;
+    &lt;arg&gt;
+      <b>&lt;component
+        class="org.seasar.framework.container.customizer.TxAttributeCustomizer"/&gt;</b>
+    &lt;/arg&gt;
+  &lt;/initMethod&gt;
+  ...
+&lt;/component&gt;
+	
+&lt;component name="serviceCustomizer"
+  class="org.seasar.framework.container.customizer.CustomizerChain"&gt;
+  &lt;initMethod name="addCustomizer"&gt;
+    &lt;arg&gt;
+      <b>&lt;component
+        class="org.seasar.framework.container.customizer.TxAttributeCustomizer"/&gt;</b>
+    &lt;/arg&gt;
+  &lt;/initMethod&gt;
+  ...
+&lt;/component&gt;
+</pre>
+<p>
+TxAttributeCustomizerを使うと、Objectクラス以外のpublicなメソッドが呼び出されると、
+自動的にトランザクション処理が行なわれます。
+デフォルトのトランザクション属性は、Requiredです。
+</p>
+<p>
+Requiredは、トランザクションが開始されていなければ、
+自動的にトランザクションを開始し、
+既にトランザクションが開始されていれば、
+そのトランザクションを引き継ぎます。
+例外が起こった場合は、自動的にロールバックします。
+</p>
+<p>
+特定のクラスのトランザクション属性を変えたい場合は、
+クラスに@TransactionAttributeを指定します。
+</p>
+<pre>
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+public class XxxAction {
+    ...
+}
+</pre>
+特定のメソッドのトランザクション属性を変えたい場合は、
+メソッドに@TransactionAttributeを指定します。
+次の例では、someMethod()はTransactionAttributeType.NEVERで、
+someMethod2()はTransactionAttributeType.REQUIRES_NEWになります。
+</p>
+<pre>
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+public class XxxAction {
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void someMethod() {
+        ...
+    }
+    public void someMethod2() {
+        ...
+    }　
+    ...
+}
+</pre>
+
+<h3><a name="DataExchange">データ変換</a></h3>
+<p>
+<a href="#Action">アクション</a>とエンティティ間でデータを変換するには、
+<a href="http://s2container.seasar.org/2.4/ja/beans.html">Beans</a>の機能を使うのが良いでしょう。
+単純に値をコピーするだけでなく、文字列と数値などの変換も行なってくれます。
+<a href="http://commons.apache.org/beanutils/">Commons BeanUtils</a>はpublicフィールドに対応していないので、
+publicフィールドを使いたい場合は、<a href="http://s2container.seasar.org/2.4/ja/beans.html">Beans</a>
+を使ってください。
+</p>
+<p>
+プライマリーキーで取得したデータをアクションフォームにコピーするには次のようにします。
+</p>
+<pre>
+Employee emp = employeeService.findById(Integer.valueOf(employeeForm.id));
+Beans.copy(emp, employeeForm).execute();
+</pre>
+<p>
+アクションフォームのデータでテーブルを更新するには次のようにします。
+</p>
+<pre>
+Employee emp = Beans.createAndCopy(Employee.class, employeeForm).execute();
+employeeService.update(emp);
+</pre>
+
+<h3><a name="JSP">JSP</a></h3>
+<p>
+JSPは、<a href="#Action">アクション</a>に対応するディレクトリに格納します。
+例えば、XxxActionで使うJSPは、/xxx/に格納すると良いでしょう。
+</p>
+<p>
+<a href="#Action">アクション</a>や<a href="#ActionForm">アクションフォーム</a>のプロパティの値は、
+リクエストの属性にプロパティと同じ名前でセットされています。
+そのため、次のように参照することができます。
+</p>
+<pre>
+${f:h(プロパティ名)}
+
+&lt;a href="${f:u(プロパティ名)}"&gt;...&lt;/a&gt;
+
+&lt;c:forEach items="${プロパティ名}" ...
+
+${f:br(f:h(プロパティ名))}
+
+&lt;fmt:formatDate value="${f:date(hireDate, 'yyyyMMdd')}"
+  pattern="yyyy/MM/dd"/&gt;
+
+&lt;fmt:formatNumber value="${f:number(salary, '####')}"
+  pattern="#,###"/&gt;
+</pre>
+<p>
+HTMLエスケープ(クロスサイトスクリプティング対策で"<"を"&amp;lt;"などに変換すること)が必要なケースは、f:h()を使ってください。
+f:h()は、配列もリストと同じように表示できます。
+</p>
+<p>
+URLエンコーディング(クロスサイトスクリプティング対策で「javascript:alert('hoge')」のような入力を
+「javascript%3Aalert%28%27hoge%27%29」のようにJavaScriptが実行されないように変換すること)が
+必要なケースは、f:u()を使ってください。
+</p>
+<p style="background-color:red">
+ELは、items="${プロパティ名}"のように要素の設定のみに使い、
+タグのボディでは使わないようにしてください。
+クロスサイトスクリプティングの問題が起こる危険があります。
+タグのボディでは、f:h()を使ってください。
+</p>
+<p>
+aタグのhref要素などを設定するときに、コンテキストルートを自動的に補完させる場合は、
+f:url()を使います。
+パスを/ではじめた場合は、コンテキストルートからみたパスになります。
+パスが/ではじまっていない場合は、JSPからみたパスになります。
+</p>
+<p>
+テキストエリアで入力した値を表示するときに、改行を&lt;br /&gt;に変換したい場合は、
+f:br()を使います。空白をそのまま表示したい場合は、f:nbsp()を使います。
+f:br()とf:nbsp()を組み合わせるには次のようにします。
+</p>
+<pre>
+${f:br(f:nbsp(f:h(textarea)))}
+</pre>
+<p>
+日付をフォーマットして表示するには、fmt:formatDateを使いますが、
+value要素に設定する値はDate型である必要があります。
+Strutsの場合、入力値は、文字列で定義するのが一般的なので、
+文字列で定義されている入力値は、fmt:formatDateでフォーマットできません。
+このような場合は、f:date()を使って文字列をDate型に変換します。
+2番めの引数は、SimpleDateFormatの形式で指定します。
+</p>
+<p>
+数値をフォーマットして表示するには、fmt:formatNumberを使いますが、
+value要素に設定する値はNumber型である必要があります。
+Strutsの場合、入力値は、文字列で定義するのが一般的なので、
+文字列で定義されている入力値は、fmt:formatNumberでフォーマットできません。
+このような場合は、f:number()を使って文字列をNumber型に変換します。
+2番めの引数は、DecimalFormatの形式で指定します。
+</p>
+<p>
+ネストしたプロパティにはドット(.)でアクセスできます。
+</p>
+<pre>
+${プロパティ名.ネストしたプロパティ名}
+</pre>
+<p style="background-color:red">
+ActionやActionFormのプロパティは、
+publicフィールドをELやStrutsが参照できるようにするために、
+JavaBeansはMapに、配列はListにラップされています。
+プロパティアクセス(.)や配列アクセス([数値])以外のやり方で、
+変数にアクセスするときには気をつけてください。
+</p>
+<p>
+任意のオブジェクトの値を読みやすい文字列で表示するには、
+f:label(value, dataList, valueName, labelName)を使います。
+valueは、任意のオブジェクトの値です。
+dataListはJavaBeansかMap&lt;String, Object&gt;のリストで、
+どのオブジェクトの値をどの文字列に変換するのかを指定します。
+valueNameはvalue用のプロパティ名(Mapの場合はキー名)、
+labelNameはlabel用のプロパティ名(Mapの場合はキー名)です。
+</p>
+<p>
+例えば、部署のidプロパティの値をnameプロパティの値で表示したい場合、
+次のように指定します。deptItemsには、部署のデータが全件入っているとします。
+</p>
+<pre>
+${f:label(e.departmentId, deptItems, "id", "name")}
+</pre>
+<p>
+どのJSPでも共通で使うような宣言は、1つのJSPにまとめ、web.xmlでそのJSPを指定します。
+sa-struts-tutorialプロジェクトでは、webapp/WEB-INF/view/common/common.jspに共通で使う宣言が
+定義されています。
+</p>
+<h5>commons.jsp</h5>
+<pre>
+&lt;%@page pageEncoding="UTF-8"%&gt;
+&lt;%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%&gt;
+&lt;%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%&gt;
+&lt;%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%&gt;
+&lt;%@taglib prefix="html" uri="http://struts.apache.org/tags-html"%&gt;
+&lt;%@taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%&gt;
+&lt;%@taglib prefix="tiles" uri="http://jakarta.apache.org/struts/tags-tiles"%&gt;
+&lt;%@taglib prefix="s" uri="http://sastruts.seasar.org"%&gt;
+&lt;%@taglib prefix="f" uri="http://sastruts.seasar.org/functions"%&gt;
+</pre>
+<h5>web.xml</h5>
+<pre>
+&lt;web-app&gt;
+    ...
+    &lt;jsp-config&gt;
+        &lt;jsp-property-group&gt;
+            &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+            &lt;el-ignored&gt;false&lt;/el-ignored&gt;
+            &lt;page-encoding&gt;UTF-8&lt;/page-encoding&gt;
+            &lt;scripting-invalid&gt;false&lt;/scripting-invalid&gt;
+            &lt;include-prelude&gt;<b>/common/common.jsp</b>&lt;/include-prelude&gt;
+        &lt;/jsp-property-group&gt;
+    &lt;/jsp-config&gt;
+&lt;/web-app&gt;
+</pre>
+<p>
+SAStrutsには、Strutsのhtml:formを継承したs:formが用意されています。
+action属性は自動的に計算されますが、Tilesのレイアウト側のJSPでは、
+明示的にaction属性を指定してください。
+</p>
+<p>
+SAStrutsには、Strutsのhtml:linkを継承したs:linkが用意されています。
+href属性を設定するときに、コンテキストルートを自動的に補完させる場合に使います。
+パスを/ではじめた場合は、コンテキストルートからみたパスになります。
+パスが/ではじまっていない場合は、JSPからみたパスになります。
+</p>
+<p>
+JSPへのダイレクト(methodがGETによる)アクセスは、デフォルトで禁止されています。
+違反した場合は、400のステータスコードが返されます。
+JSPは<a href="#Action">アクション</a>を経由して表示したほうがいいでしょう。
+最初は、<a href="#Action">アクション</a>で何もすることがなくても、
+後から必要になった場合に、URLが変わらないようにするためです。
+また、セキュリティ的なチェックを入れたいときも、
+<a href="#Action">アクション</a>を経由するほうが何かと便利です。
+</p>
+<p>
+リダイレクトで、他のJSPへ遷移するときも、戻り値を下記のようにして、
+<a href="#Action">アクション</a>を経由するようにします。
+</p>
+<pre>
+return "/アクション名/メソッド名?redirect=true";
+</pre>
+<p>
+どうしても、JSPへ直接アクセスする必要がでてきた場合は、
+web.xmlのroutingfilterのinit-paramでjspDirectAccessの値をtrueにします。
+詳しくは、<a href="fileReference.html#web">web.xml</a>を参照してください。
+</p>
+
+<h3><a name="Scaffold">アプリケーションの自動生成</a></h3>
+<p>
+Doltengを使って、データベースにアクセスするアプリケーションを自動生成することができます。
+詳しくは、<a href="http://dolteng.sandbox.seasar.org/usage.html#database-view">Database View</a>を参照してください。
+</p>
+
+<h3><a name="SQLFileToDto">SQLファイルからDTOの自動生成</a></h3>
+<p>
+Doltengを使って、SQLファイルに対応するDTOを自動生成することができます。
+詳しくは、<a href="http://dolteng.sandbox.seasar.org/usage.html#sql-dto">こちら</a>を参照してください。
+SQLファイルの詳細は、<a href="http://s2container.seasar.org/2.4/ja/s2jdbc_manager_sqlfile.html">こちら</a>を参照してください。
+</p>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2006-2008, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

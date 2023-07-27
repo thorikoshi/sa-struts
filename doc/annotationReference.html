@@ -1,0 +1,1022 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts - Annotation Reference</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+    <li><a href="index.html">ホーム</a></li>
+    <li><a href="setup.html">セットアップ</a></li>
+    <li><a href="download.html">ダウンロード</a></li>
+    <li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a>
+		<ul>
+			<li><a href="#General">一般</a>
+			<ul>
+				<li><a href="#Execute">Execute</a></li>
+				<li><a href="#ActionForm">ActionForm</a></li>
+			</ul>
+			</li>
+			<li><a href="#Validation">検証</a>
+			<ul>
+				<li><a href="#Required">Required</a></li>
+				<li><a href="#Validwhen">Validwhen</a></li>
+				<li><a href="#Minlength">Minlength</a></li>
+				<li><a href="#Maxlength">Maxlength</a></li>
+				<li><a href="#Minbytelength">Minbytelength</a></li>
+				<li><a href="#Maxbytelength">Maxbytelength</a></li>
+				<li><a href="#Mask">Mask</a></li>
+				<li><a href="#IntRange">IntRange</a></li>
+				<li><a href="#LongRange">LongRange</a></li>
+				<li><a href="#FloatRange">FloatRange</a></li>
+				<li><a href="#DoubleRange">DoubleRange</a></li>
+				<li><a href="#ByteType">ByteType</a></li>
+				<li><a href="#ShortType">ShortType</a></li>
+				<li><a href="#IntegerType">IntegerType</a></li>
+				<li><a href="#LongType">LongType</a></li>
+				<li><a href="#FloatType">FloatType</a></li>
+				<li><a href="#DoubleType">DoubleType</a></li>
+				<li><a href="#DateType">DateType</a></li>
+				<li><a href="#CreditCardType">CreditCardType</a></li>
+				<li><a href="#EmailType">EmailType</a></li>
+				<li><a href="#UrlType">UrlType</a></li>
+				<li><a href="#Msg">Msg</a></li>
+				<li><a href="#Arg">Arg</a></li>
+				<li><a href="#Validator">Validator</a></li>
+			</ul>
+			</li>
+		</ul>
+	</li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>アノテーションリファレンス</h2>
+<p>SAStrutsで使われているアノテーションの説明をします。</p>
+
+<h3><a name="General">一般的なアノテーション</a></h3>
+<p>
+一般的なアノテーションです。
+</p>
+
+<h4><a name="Execute">Executeアノテーション</a></h4>
+<p>
+実行メソッドにつけるアノテーションです。
+実行メソッドの詳細は、<a href="featureReference.html#ExecuteMethod">こちら</a>を参照してください。
+</p>
+<h5>validator要素(オプション)</h5>
+<p>
+<a href="#Validator">検証用のアノテーション</a>を有効にするかどうかを指定します。
+デフォルトはtrue(有効)です。
+trueの場合は、input要素も指定する必要があります。
+バリデータの詳細は、<a href="featureReference.html#Validator">こちら</a>を参照してください。
+</p>
+<h5>validate要素(オプション)</h5>
+<p>
+検証メソッドの名前を指定します。
+名前を指定した場合は、input要素も指定する必要があります。
+検証メソッドの詳細は、<a href="featureReference.html#ValidateMethod">こちら</a>を参照してください。
+</p>
+<p>
+カンマ区切りで検証メソッドを複数指定することもできます。
+指定した順番で検証が行なわれます。
+通常は、アノテーションを使った検証、検証メソッドの順で検証が行なわれますが、
+、validate="validate, @, validate2"のように@を指定することで、
+validateメソッドを実行した後に、アノテーションを使った検証を行なうこともできます。
+@はアノテーションを使った検証をあらわします。
+</p>
+<h5>input要素(オプション)</h5>
+<p>
+検証結果がNGのときの遷移先を指定します。
+validator要素がtrue、あるいは、validate要素が指定された場合は、
+必ず指定する必要があります。
+遷移先のパスの記述は、<a href="featureReference.html#ExecuteMethod">実行メソッド</a>の戻り値の書き方に加えて、
+urlPattern要素のようにパラメータをパス({パラメータ名})で指定することもできます。
+</p>
+<h5>saveErrors要素(オプション)</h5>
+<p>
+検証結果がNGのときのActionMessagesの保存先を指定します。
+デフォルトはSaveType.REQUESTです。
+セッションに保存する場合は、SaveType.SESSIONを指定します。
+</p>
+<h5>urlPattern要素(オプション)</h5>
+<p>
+urlPatternに一致するメソッドが呼び出されるようにします。
+デフォルトは、メソッド名になります。<br />
+URLがhttp://localhost:8080/sa-struts-tutorial/employee/edit/の場合、<br />
+URLからアクションのパス(http://localhost:8080/sa-struts-tutorial/employee/)を除き(edit/)<br />
+最後の/を取り除いた部分(edit)がパラメータ用のパスになります。
+パラメータ用のパスとurlPatternが一致したメソッドが呼び出されるので、
+今回の例だとedit()が呼び出されます。
+</p>
+<p>
+urlpatternに{パラメータ名}を指定することで、URLで{}に一致する部分を
+パラメータの値として取得できます。
+例えば、次のようにEmployeeAction#edit()が定義されているとします。
+</p>
+<pre>
+@Execute(urlPattern = "edit/{id}")
+public String edit() {
+    ...
+}
+</pre>
+<p>
+http://localhost:8080/sa-struts-tutorial/employee/edit/1にアクセスすると
+パラメータ用のパスは、edit/1になるので、idのパラメータに1が設定されて、
+edit()が呼び出されます。
+</p>
+<h5>roles要素(オプション)</h5>
+<p>
+実行メソッドを呼び出すために必要なロールを設定します。
+複数設定する場合は、カンマ(,)で区切ります。
+rolesが指定されていない場合は、チェックは行なわれません。
+</p>
+<pre>
+@Execute(..., roles = "aaa,bbb")
+public String edit() {
+    ...
+}
+</pre>
+<p>
+チェックがNGの場合、org.seasar.struts.exception.NoRoleRuntimeExceptionが
+スローされます。
+</p>
+<h5>stopOnvalidationError要素(オプション)</h5>
+<p>
+検証エラーがあった場合に後続の検証をやめるかどうかを指定します。
+デフォルトはtrueで、validatorなどでエラーがあると後続の検証メソッドは実行しません。
+falseの場合は、validatorなどでエラーがあっても後続の検証メソッドを続けて実行します。
+</p>
+<h5>removeActionForm要素(オプション)</h5>
+<p>
+実行メソッドが正常終了したときに、セッションスコープのアクションフォームを
+削除するかどうかを指定します。
+デフォルトはfalseで、削除はしません。
+</p>
+<h5>reset要素(オプション)</h5>
+<p>
+<a href="featureReference.html#ResetMethod">リセットメソッド</a>
+の名前を指定します。デフォルトは、resetです。
+</p>
+<h5>redirect要素(オプション)</h5>
+<p>
+遷移先にリダイレクトで遷移するかどうかを指定します。
+デフォルトはfalseで、リダイレクトはしません。
+</p>
+
+<h4><a name="ActionForm">ActionFormアノテーション</a></h4>
+<p>
+アクションフォームを指定するためのアノテーションです。
+アクションフォームの詳細は、<a href="featureReference.html#ActionForm">こちら</a>を参照してください。
+</p>
+
+<h3><a name="Validation">検証用のアノテーション</a></h3>
+<p>
+<a href="http://commons.apache.org/validator/">commons validator</a>
+を使った検証用のアノテーションです。
+</p>
+
+<h4><a name="Required">Requiredアノテーション</a></h4>
+<p>
+必須チェック用のアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.required")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Validwhen">Validwhenアノテーション</a></h4>
+<p>
+条件に一致するかどうかを確認するためのアノテーションです。
+antlr.jarが必要になります。
+</p>
+<h5>test要素(必須)</h5>
+<p>
+条件を指定します。
+自分自身のプロパティの値は*this*で参照します。
+</p>
+<p>
+あるプロパティ(validwhen1Text)が入力された場合は、
+自分自身も入力しなければいけないような場合、
+次のように指定します。
+</p>
+<pre>
+@Validwhen(test = "((validwhen1Text == null) or (*this* != null))",
+    msg = @Msg(key = "errors.required.other"),
+    args = @Arg(key = "validwhen1Text", resource = false, position = 1))
+</pre>
+<h5>msg要素(必須)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>args要素(オプション)</h5>
+<p>
+メッセージの引数(@Arg)を配列で指定します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+@Argのposition要素の指定は忘れないようにしてください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Minlength">Minlengthアノテーション</a></h4>
+<p>
+文字列長の最小値を指定するためのアノテーションです。
+</p>
+<h5>minlength要素(必須)</h5>
+<p>
+文字列長の最小値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.minlength")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはminlength要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Maxlength">Maxlengthアノテーション</a></h4>
+<p>
+文字列長の最大値を指定するためのアノテーションです。
+</p>
+<h5>maxlength要素(必須)</h5>
+<p>
+文字列長の最大値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.maxlength")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはmaxlength要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Minbytelength">Minbytelengthアノテーション</a></h4>
+<p>
+バイト長の最小値を指定するためのアノテーションです。
+</p>
+<h5>minbytelength要素(必須)</h5>
+<p>
+バイト長の最小値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.minbytelength")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはminbytelength要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Maxbytelength">Maxbytelengthアノテーション</a></h4>
+<p>
+バイト長の最大値を指定するためのアノテーションです。
+</p>
+<h5>maxbytelength要素(必須)</h5>
+<p>
+バイト長の最大値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.maxbytelength")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはmaxbytelength要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Mask">Maskアノテーション</a></h4>
+<p>
+正規表現に一致するかどうかを確認するためのアノテーションです。 jakarta-oro.jarが必要になります。 
+</p>
+<h5>mask要素(必須)</h5>
+<p>
+正規表現を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.invalid")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>args要素(オプション)</h5>
+<p>
+メッセージの引数(@Arg)を配列で指定します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+@Argのposition要素の指定は忘れないようにしてください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="IntRange">IntRangeアノテーション</a></h4>
+<p>
+整数の範囲を指定するためのアノテーションです。
+</p>
+<h5>min要素(必須)</h5>
+<p>
+最小値を指定します。
+</p>
+<h5>max要素(必須)</h5>
+<p>
+最大値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.range")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはmin要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg2要素(オプション)</h5>
+<p>
+メッセージの3番目の引数を指定します。
+デフォルトはmax要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="LongRange">LongRangeアノテーション</a></h4>
+<p>
+長整数の範囲を指定するためのアノテーションです。
+</p>
+<h5>min要素(必須)</h5>
+<p>
+最小値を指定します。
+</p>
+<h5>max要素(必須)</h5>
+<p>
+最大値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.range")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはmin要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg2要素(オプション)</h5>
+<p>
+メッセージの3番目の引数を指定します。
+デフォルトはmax要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="FloatRange">FloatRangeアノテーション</a></h4>
+<p>
+単精度実数の範囲を指定するためのアノテーションです。
+</p>
+<h5>min要素(必須)</h5>
+<p>
+最小値を指定します。
+</p>
+<h5>max要素(必須)</h5>
+<p>
+最大値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.range")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはmin要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg2要素(オプション)</h5>
+<p>
+メッセージの3番目の引数を指定します。
+デフォルトはmax要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="DoubleRange">DoubleRangeアノテーション</a></h4>
+<p>
+倍精度実数の範囲を指定するためのアノテーションです。
+</p>
+<h5>min要素(必須)</h5>
+<p>
+最小値を指定します。
+</p>
+<h5>max要素(必須)</h5>
+<p>
+最大値を指定します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.range")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg1要素(オプション)</h5>
+<p>
+メッセージの2番目の引数を指定します。
+デフォルトはmin要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>arg2要素(オプション)</h5>
+<p>
+メッセージの3番目の引数を指定します。
+デフォルトはmax要素で指定した値です。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="ByteType">ByteTypeアノテーション</a></h4>
+<p>
+Byte型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.byte")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="ShortType">ShortTypeアノテーション</a></h4>
+<p>
+Short型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.short")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="IntegerType">IntegerTypeアノテーション</a></h4>
+<p>
+Integer型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.integer")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="LongType">LongTypeアノテーション</a></h4>
+<p>
+Long型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.long")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="FloatType">FloatTypeアノテーション</a></h4>
+<p>
+Float型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.float")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="DoubleType">DoubleTypeアノテーション</a></h4>
+<p>
+Double型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.double")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="DateType">DateTypeアノテーション</a></h4>
+<p>
+Date型に変換できることを検証するためのアノテーションです。
+</p>
+<h5>datePattern要素(オプション)</h5>
+<p>
+日付のパターンを指定します。
+</p>
+<h5>datePatternStrict要素(オプション)</h5>
+<p>
+厳密な日付のパターンを指定します。
+例えば、yyyy/MM/ddと指定した場合、2008/01/01はOKですが、
+2008/1/1は、月や日の部分の桁数が指定と違うのでNGになります。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.date")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="CreditCardType">CreditCardTypeアノテーション</a></h4>
+<p>
+クレジットカード番号を検証するためのアノテーションです。
+番号はデリミタ(-とかブランクとか)無しで入力します。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.creditcard")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="EmailType">EmailTypeアノテーション</a></h4>
+<p>
+Emailアドレスを検証するためのアノテーションです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.email")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="UrlType">UrlTypeアノテーション</a></h4>
+<p>
+URLを検証するためのアノテーションです。
+</p>
+<h5>allowallschemes要素(オプション)</h5>
+<p>
+すべてのスキームを許可するかどうかです。
+デフォルトはfalse(許可しない)です。
+</p>
+<h5>allow2slashes要素(オプション)</h5>
+<p>
+ダブルスラッシュ（//）を許可するかどうかです。
+デフォルトfalseは(許可しない)です。
+</p>
+<h5>nofragments要素(オプション)</h5>
+<p>
+URLの分割(#を含める)を許可するかどうかです。
+デフォルトはfalse(許可する)です。
+</p>
+<h5>schemes要素(オプション)</h5>
+<p>
+許可するスキームを指定します。複数ある場合は、カンマで区切ります。
+デフォルトはhttp,https,ftpです。
+</p>
+<h5>msg要素(オプション)</h5>
+<p>
+検証がNGの場合のメッセージを指定します。
+デフォルトは@Msg(key = "errors.url")です。
+@Msgの詳細は、<a href="#Msg">こちら</a>を参照してください。
+</p>
+<h5>arg0要素(オプション)</h5>
+<p>
+メッセージの最初の引数を指定します。
+デフォルトはプロパティ名です。
+プロパティ名を多言語化する場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に<br />
+<b>labels.プロパティ名=xxx</b>のエントリを追加します。
+@Argの詳細は、<a href="#Arg">こちら</a>を参照してください。
+</p>
+<h5>target要素(オプション)</h5>
+<p>
+検証の対象にするメソッド名を指定します。
+対象にするメソッドが複数ある場合は、カンマで区切ります。
+</p>
+
+<h4><a name="Msg">Msgアノテーション</a></h4>
+<p>
+メッセージを指定するためのアノテーションです。
+</p>
+<h5>key要素(必須)</h5>
+<p>
+resource要素がtrueの場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に登録されている
+キーを指定します。
+resource要素がfalseの場合は、メッセージそのものを指定します。
+</p>
+<h5>resource要素(オプション)</h5>
+<p>
+メッセージが<a href="fileReference.html#MessageResources">メッセージリソース</a>に
+登録されているかどうかを指定します。
+デフォルトはtrue(登録されている)です。
+</p>
+<h5>bundle要素(オプション)</h5>
+<p>
+リソースバンドルを指定します。
+</p>
+
+<h4><a name="Arg">Argアノテーション</a></h4>
+<p>
+メッセージの引数を指定するためのアノテーションです。
+</p>
+<h5>key要素(必須)</h5>
+<p>
+resource要素がtrueの場合は、
+<a href="fileReference.html#MessageResources">メッセージリソース</a>に登録されている
+キーを指定します。
+resource要素がfalseの場合は、引数そのものを指定します。
+</p>
+<p>
+@Arg(key = "${var:minlength}", resource = false)のようにvar:の後に、
+変数名を指定することで、変数の値をメッセージの引数として利用できます。
+</p>
+<h5>resource要素(オプション)</h5>
+<p>
+引数が<a href="fileReference.html#MessageResources">メッセージリソース</a>に
+登録されているかどうかを指定します。
+デフォルトはtrue(登録されている)です。
+</p>
+<h5>bundle要素(オプション)</h5>
+<p>
+リソースバンドルを指定します。
+</p>
+<h5>position要素(オプション)</h5>
+<p>
+引数の位置を指定します。
+値は0からはじまります。
+</p>
+
+<h4><a name="Validator">Validatorアノテーション</a></h4>
+<p>
+検証用のアノテーションにつけるメタアノテーションです。
+検証用のアノテーションのmsg、arg0, arg1, ..., args, target要素は、
+あらかじめ決められたとおりに処理されます。
+それ以外の要素は、バリデータに対する変数とみなされます。
+</p>
+<h5>value要素(必須)</h5>
+<p>
+validator-rules.xmlの記述されているvalidatorタグのname属性の値を指定します。
+</p>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2006, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

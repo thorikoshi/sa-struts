@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts - Release Notes</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+    <li><a href="index.html">ホーム</a></li>
+    <li><a href="setup.html">セットアップ</a></li>
+    <li><a href="download.html">ダウンロード</a></li>
+    <li><a href="releaseNotes.html">リリースノート</a></li>
+	<li><a href="tutorial.html">チュートリアル</a></li>
+	<li><a href="featureReference.html">機能リファレンス</a></li>
+	<li><a href="annotationReference.html">アノテーションリファレンス</a></li>
+	<li><a href="fileReference.html">設定ファイルリファレンス</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+	<li><a href="portlet.html">ポートレット対応</a></li>
+    <li><a href="mavenArchetype.html">Maven Archetype</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+
+<h2>Release Notes - SAStruts - Version 1.0.4-sp8</h2>
+        
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-125'>SASTRUTS-125</a>] -         BeanWrapperがindexed propertyに対応していない
+</li>
+</ul>
+            
+
+<h2>Release Notes - SAStruts - Version 1.0.4-sp7</h2>
+        
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-122'>SASTRUTS-122</a>] -         s:linkでtransaction属性を有効にする
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-124'>SASTRUTS-124</a>] -         multipartリクエストのときにparamオブジェクトでformのパラメータを受け取れるようにしました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-119'>SASTRUTS-119</a>] -         StrutsのタグからActionFormのMapなプロパティにアクセスできるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-121'>SASTRUTS-121</a>] -         MessageResourcesUtilで可変長引数をサポートしました
+</li>
+</ul>
+        
+
+
+<h2>Release Notes - SAStruts - Version 1.0.4-sp6</h2>
+        
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-116'>SASTRUTS-116</a>] -         ActionFormのプロパティをリクエストにセットするときにActionFormWrapper経由にしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-120'>SASTRUTS-120</a>] -         ActionFormがsessionにありremoveActionFormがtrueでActionMessagesException()がスローされたときに入力値が消えてしまう
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-118'>SASTRUTS-118</a>] -         ActionFormWrapperをStrutsのiterateタグなどに対応させました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-119'>SASTRUTS-119</a>] -         StrutsのタグからActionFormのMapなプロパティにアクセスできるようにしました
+</li>
+</ul>
+        
+
+<h2>Release Notes - SAStruts - Version 1.0.4-sp5</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-115'>SASTRUTS-115</a>] -         親アクションの検証メソッドを呼び出せない問題を修正しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-116'>SASTRUTS-116</a>] -         ActionFormのプロパティをリクエストにセットするときにActionFormWrapper経由にしました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-117'>SASTRUTS-117</a>] -         BeanWrapper#entrySet()を実装しました
+</li>
+</ul>
+
+<h2>Release Notes - SAStruts - Version 1.0.4-sp4</h2>
+        
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-113'>SASTRUTS-113</a>] -         エラーメッセージの表示順をsetter,getterメソッドがあるときでもField順にしました
+</li>
+</ul>
+        
+
+<h2>Release Notes - SAStruts - Version 1.0.4-sp3</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-111'>SASTRUTS-111</a>] -         実行メソッドでActionMessageを設定したときに無限ループする問題を修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version 1.0.4-sp2</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-94'>SASTRUTS-94</a>] -         redirectする設定でActionMessagesExceptionを発生させた場合にinputにリダイレクトしないようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-95'>SASTRUTS-95</a>] -         異なるActionFormのresetメソッドを呼ぼうとして失敗する問題を修正しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-104'>SASTRUTS-104</a>] -         チュートリアルのJSPのtaglibを使ってない箇所のXSS防止の対応をしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-108'>SASTRUTS-108</a>] -         publicプロパティ以外の場合にgetterメソッドがないと例外になるのを修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-100'>SASTRUTS-100</a>] -         アップロード/ダウンロード用のユーティリティでデータをオンメモリで持たないようにする対応をしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-103'>SASTRUTS-103</a>] -         Clientのバリデーションが楽になるようにS2SubmitTagを追加しました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.4-sp1</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-91'>SASTRUTS-91</a>] -         indexメソッドが定義されていない場合に、メソッドが指定されなかったときは404を返すようにしました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-92'>SASTRUTS-92</a>] -         f:nbspを追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-93'>SASTRUTS-93</a>] -         f:labelでvalueの型とデータの型が一致しない場合は文字列に変換してから比較するようにしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.4</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-90'>SASTRUTS-90</a>] -         @Executeでridirect=trueにするとバリデーションエラー時にもリダイレクトする問題を修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version 1.0.4-rc1</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-85'>SASTRUTS-85</a>] -         removeActionForm=trueで検証エラーのときにアクションフォームの内容がrequestに設定されない問題を修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-87'>SASTRUTS-87</a>] -         @Executeでredirectの指定をできるようにしました
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-86'>SASTRUTS-86</a>] -         s:linkタグを追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-88'>SASTRUTS-88</a>] -         値を表示用のラベルに変換するf:labelを追加しました
+</li>
+</ul>
+    
+<h2>Release Notes - SAStruts - Version 1.0.3</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-84'>SASTRUTS-84</a>] -         ファイルアップロードでサイズオーバーのときにindexメソッドに遷移しない問題を修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version 1.0.3-rc1</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-80'>SASTRUTS-80</a>] -         実行メソッドの継承が有効にならない問題を修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-70'>SASTRUTS-70</a>] -         @ActionFormをprotectedなフィールドにも設定できるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-71'>SASTRUTS-71</a>] -         検証メソッドをActionFormにも書けるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-74'>SASTRUTS-74</a>] -         実行メソッド終了後にセッションにあるActionFormを削除できるように@ExecuteにremoveActionForm要素を追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-76'>SASTRUTS-76</a>] -         ActionやActionFormのプロパティをリクエストにセットする処理をS2RequestProcessor#doForward()に移動しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-77'>SASTRUTS-77</a>] -         実行メソッドごとにリセットメソッドを指定できるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-79'>SASTRUTS-79</a>] -         Ajaxのサンプルを追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-81'>SASTRUTS-81</a>] -         アノテーションに@Documentedをつけるようにしました。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-82'>SASTRUTS-82</a>] -         S2RequestProcessor#processActionFormで例外が起きたときはログだけでなく例外もスローするようにしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.2</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-69'>SASTRUTS-69</a>] -         s:formのaction要素でアクションパスの最後が/にならないという問題を修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version 1.0.2-rc6</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-68'>SASTRUTS-68</a>] -         s:formのactionの自動設定でネストしたIndexActionに対応しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version 1.0.2-rc5</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-65'>SASTRUTS-65</a>] -         Actionの実行メソッドの戻り値がnullの時にエラーが発生していたのを修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version 1.0.2-rc4</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-50'>SASTRUTS-50</a>] -         ActionWrapperでrequestScopeをリクエストにエキスポートしないようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-55'>SASTRUTS-55</a>] -         パラメータ用のパスを/で終了しないように修正しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-62'>SASTRUTS-62</a>] -         Actionから別のActionへ遷移するときにDTOを渡せない問題を修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-56'>SASTRUTS-56</a>] -         s:formのaction要素を自動的に計算するようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-58'>SASTRUTS-58</a>] -         ネストしたIndexActionに対応しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-59'>SASTRUTS-59</a>] -         実行メソッド名とプロパティ名が重複している場合はエラーにするようにしました
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-57'>SASTRUTS-57</a>] -         コンテキストルートを自動的に補完するf:url()を追加しました
+</li>
+</ul>
+    
+<h2>Release Notes - SAStruts - Version 1.0.2-rc3</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-35'>SASTRUTS-35</a>] -         ルーティングパスでネストしたアクションをうまく扱えない問題を修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-34'>SASTRUTS-34</a>] -         s:formにonkeypress, onkeyup, onkeydownを追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-36'>SASTRUTS-36</a>] -         ArrayWrapperでcontainsをサポートしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-40'>SASTRUTS-40</a>] -         Viewのプレフィックスを指定できるようにしました。
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-41'>SASTRUTS-41</a>] -         Logicを使うのやめてServiceを使うようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-45'>SASTRUTS-45</a>] -         検証エラーがあっても検証を続けられるように@ExecuteにstopOnValidationError属性を追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-47'>SASTRUTS-47</a>] -         @Executeのvalidate要素で複数の検証メソッドを指定できるようにしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.2-rc2</h2>
+        
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-31'>SASTRUTS-31</a>] -         ファイルアップロードでサイズが限界を超えた場合にSizeLimitExceededExceptionを取得できるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-32'>SASTRUTS-32</a>] -         Maskバリデータでargsを指定できるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-33'>SASTRUTS-33</a>] -         クライアントサイドバリデーションに対応しました
+</li>
+</ul>
+        
+
+<h2>Release Notes - SAStruts - Version 1.0.2-rc1</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-29'>SASTRUTS-29</a>] -         複数のファイルアップロードに対応しました
+</li>
+</ul>
+        
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-30'>SASTRUTS-30</a>] -         ActionMessagesUtilを追加しました
+</li>
+</ul>
+    
+<h2>Release Notes - SAStruts - Version 1.0.1-rc4</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-24'>SASTRUTS-24</a>] -         urlPatternが{id}のように全選択されている実行メソッドは、メソッド検索の順番が最後になるようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-25'>SASTRUTS-25</a>] -         s:formでアクションのパス以外にメソッド名やパラメータも書けるようにしました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-26'>SASTRUTS-26</a>] -         Executeアノテーションのinput属性でedit/{id}のようなパラメータの指定をできるようにしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.1-rc3</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-21'>SASTRUTS-21</a>] -         リダイレクトの時に、.doで遷移してしまう問題を修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-22'>SASTRUTS-22</a>] -         ArrayWrapperでlengthプロパティをサポートしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-23'>SASTRUTS-23</a>] -         JSPのダイレクトアクセスがあったときに400のステータスコードを返すようにしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.1-rc2</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-18'>SASTRUTS-18</a>] -         ArrayWrapperでListを実装するようにしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-20'>SASTRUTS-20</a>] -         ActionからActionへ遷移できない問題を修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-19'>SASTRUTS-19</a>] -         ActionのプロパティがMapの場合も扱えるようにしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version 1.0.1-rc1</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-11'>SASTRUTS-11</a>] -         COOL deployでS2ExecuteConfigが例外になる問題を修正しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-12'>SASTRUTS-12</a>] -         ELでリストや配列にアクセスしたときに例外になっていたのを修正しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-13'>SASTRUTS-13</a>] -         ismap属性が設定されているときに実行メソッドが呼び出されないバグを修正しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-17'>SASTRUTS-17</a>] -         MayaaからActionのプロパティのJavaBeansにアクセスできるようにしました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-14'>SASTRUTS-14</a>] -         文字列を日付や数値に変換するファンクションを追加しました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-15'>SASTRUTS-15</a>] -         実行メソッドでロールによる認可を可能にしました
+</li>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-16'>SASTRUTS-16</a>] -         改行を&lt;br /&gt;に変換できるようにしました
+</li>
+</ul>
+        
+
+<h2>Release Notes - SAStruts - Version 1.0.0</h2>
+        
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-10'>SASTRUTS-10</a>] -         urlPatternで英数字以外も対象にしました
+</li>
+</ul>
+        
+<h2>Release Notes - SAStruts - Version rc8</h2>
+            
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-9'>SASTRUTS-9</a>] -         JSPのダイレクトアクセスを禁止できるようにしました
+</li>
+</ul>
+    
+<h2>Release Notes - SAStruts - Version rc7</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-8'>SASTRUTS-8</a>] -         Java6でバリデーションエラーになったときに、無限ループしていたのを修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version rc6</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-7'>SASTRUTS-7</a>] -         URLとアクションのマッピングを厳密にやるようにしました
+</li>
+</ul>
+
+<h2>Release Notes - SAStruts - Version rc5</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-6'>SASTRUTS-6</a>] -         httpではじまるパスに遷移できない問題を修正しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version rc4</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-5'>SASTRUTS-5</a>] -         COOL deployに対応しました
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version rc3</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-4'>SASTRUTS-4</a>] -         ダウンロードで実行メソッドの戻り値をnullにするとぬるぽになる
+</li>
+</ul>
+            
+<h2>Release Notes - SAStruts - Version rc2</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-3'>SASTRUTS-3</a>] -         Actionの遷移先がきれいなURLの時に遷移に失敗していたのを修正しました
+</li>
+</ul>
+    
+<h3>        Improvement
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-2'>SASTRUTS-2</a>] -         ファイルアップロードに対応しました
+</li>
+</ul>
+    
+<h3>        New Feature
+</h3>
+<ul>
+<li>[<a href='https://www.seasar.org/issues/browse/SASTRUTS-1'>SASTRUTS-1</a>] -         URLをエンコードするファンクションを追加しました
+</li>
+</ul>
+    
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2006, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" />
+<meta name="description" content="sastruts" />
+<title>Super Agile Struts</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+<!-- TRANSLATION NOTE BEGINS -->
+<div style="position:absolute; left: 200px; top: 160px; border: 1px dotted gray; width: 800px; background-color: #EEEEFF">
+NOTE: This page is a translation from the original Japanese version of
+ <a href="../sastrutsplugin.html">sastrutsplugin.html, 
+ rev 761</a> 
+ as of 2008-09-23.
+</div>
+<!--  TRANSLATION NOTE ENDS  -->
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h2 id="h01" class="hide">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="UTF-8" />
+	<input id="search_go" type="submit" value="Search" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left">
+
+<h2>Menu</h2>
+
+<ul>
+	<li><a href="index.html">Home</a></li>
+	<li><a href="setup.html">Setting up</a></li>
+	<li><a href="download.html">Download</a></li>
+	<li><a href="releaseNotes.html">Release Notes</a></li>
+	<li><a href="tutorial.html">Tutorial</a></li>
+	<li><a href="featureReference.html">Feature Reference</a></li>
+	<li><a href="annotationReference.html">Annotations Reference</a></li>
+	<li><a href="fileReference.html">Configuration File Reference</a></li>
+	<li><a href="sastrutsplugin.html">SAStrutsPlugin</a></li>
+		<ul>
+			<li><a href="#Abstract">Overview</a></li>
+			<li><a href="#Setup">Setting up</a>
+			</li><li><a href="sastrutspluginUsage.html">Usage</a></li>
+			<li><a href="sastrutspluginReleaseNotes.html">Release Note of SAStrutsPlugin</a></li>
+			<li><a href="#maillist">Mailing List</a></li>
+			<li><a href="#tracking">Tracking</a></li>
+			<li><a href="#subversion">Subversion Repository</a></li>
+			<li><a href="#blog">Committer's blog</a></li>
+		</ul>
+	<li><a href="portlet.html">Portlet</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+
+<h2>SAStrutsPlugin</h2>
+
+<h3><a name="Abstract">Overview</a></h3>
+
+<p>SAStrutsPlugin is an Eclipse plugin to assist your development work with SAStruts. It has the following features:</p>
+
+<ul>
+	<li>Opens/creates a JSP file corresponding to a Java source file (which is an SAStruts action class) via the context menu or by a keyboard shortcut (Ctrl+8) </li>
+	<li>Opens/creates a Java source file corresponding  to a JSP flie via the popup menu or by a keyboard shortcut (Ctrl+8). </li>
+	<li>completion feature on JSP Editor</li>
+	<li>View on Server</li>
+	<li>View SAStruts Help</li>
+</ul>
+
+<h3><a name="Setup">Setting up</a></h3>
+<p>SAStrutsPlugin works with Eclipse3.3+WTP2.0 or Eclipse3.4+WTP3.0. The JAVA file can be opened from JSP Editor.  You cannot open the one from Web page Editor. Go to the following update site and select "SAStrutsPlugin" to install.</p>
+<ul>
+  <li><a href="http://eclipse.seasar.org/updates/3.3/ ">http://eclipse.seasar.org/updates/3.3/ </a></li>
+</ul>For developers who use <a href="http://amateras.sourceforge.jp/cgi-bin/fswiki/wiki.cgi">Amateras</a> <a href="http://amateras.sourceforge.jp/cgi-bin/fswiki/wiki.cgi?page=EclipseHTMLEditor">Eclipse HTML Editor Plugin</a>  <a href="http://amateras.sourceforge.jp/cgi-bin/fswiki/wiki.cgi?page=SAStrutsPlugin">SAStrutsPlugin for Amateras</a> is an alternative. It is not recommended to use SAStrutsPlugin for Amateras and SAStrutsPlugin in the same environment, because both plugins use the same project settings, key bindings and popup menus interferingly.<h3><a href="sastrutspluginUsage.html">Usage</a></h3>
+<ul>
+	<li><a href="sastrutspluginUsage.html#Usage">Project setting</a>
+	</li><li><a href="sastrutspluginUsage.html#func_jsp_open">Open the  JSP file</a>
+	</li><li><a href="sastrutspluginUsage.html#func_jsp_create">Creating the JSP file</a>
+	</li><li><a href="sastrutspluginUsage.html#func_java_open">Open the JAVA file</a>
+	</li><li><a href="sastrutspluginUsage.html#func_java_create">Creating the JAVA file</a>
+	</li><li><a href="sastrutspluginUsage.html#jsp_editor_contents_assist">completion feature on JSP Editor</a>
+	</li><li><a href="sastrutspluginUsage.html#view_on_server">View on Server</a>
+	</li><li><a href="sastrutspluginUsage.html#view_sastruts_help">View SAStruts Help</a>
+</li></ul>
+
+<h3><a href="sastrutspluginReleaseNotes.html">Release Note of SAStrutsPlugin</a></h3><!--
+<h3><a name="news">NEWS</a></h3>
+<ul>
+  <li>2008/08/11 SAStrutsPlugin 0.0.8  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-08-11#hbefca06">こちら</a></li>
+  <li>2008/06/27 SAStrutsPlugin 0.0.7  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-06-27#s16b895e">こちら</a></li>
+  <li>2008/06/06 SAStrutsPlugin 0.0.6  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-06-06#ibcb44da">こちら</a></li>
+  <li>2008/05/20 SAStrutsPlugin 0.0.5  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-05-20#pb4b2b6c">こちら</a></li>
+  <li>2008/05/18 SAStrutsPlugin 0.0.4  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-05-18#d9114288">こちら</a></li>
+  <li>2008/04/27 SAStrutsPlugin 0.0.3  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-04-27#r2910cdf">こちら</a></li>
+  <li>2008/03/22 SAStrutsPlugin 0.0.2  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-03-22#n5246636">こちら</a></li>
+  <li>2008/03/14 SAStrutsPlugin 0.0.1  をリリースしました。変更点は<a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2008-03-14#jf0fbc8c">こちら</a></li>
+</ul>
+-->
+
+
+
+<h3><a name="maillist">Mailing List</a></h3>
+<dl>
+  <dt><a href="https://www.seasar.org/mailman/listinfo/seasar-user">seasar-user</a></dt>
+    <dd>A mailing list for users of Seasar2 and related products. <br> For questions, troubles or any suggestions on SAStrutsPlugin, use this list. <br> Please include [SAStrutsPlugin] to the subject. It would also be appreciated if you could include any excerpt of the Eclipse error log, if any.</dd>
+  <dt><a href="https://www.seasar.org/mailman/listinfo/seasar-dev">seasar-dev</a></dt>
+    <dd>A mailing list for developers of Seasar2 and related products.</dd>
+</dl>
+<h3><a name="tracking">Tracking</a></h3>
+<dl>
+  <dt><a href="https://www.seasar.org/issues/browse/SAStruts">JIRA</a></dt>
+    <dd>Bugs of SAStrutsPlugin are managed  using a component named SAStruts plugin.</dd>
+</dl>
+<h3><a name="subversion">Subversion Repository</a></h3>
+<p>SAStrutsPlugin source code is available from the Subversion repository of seasar.org. </br> Everyone can access it to view. </br> (Follow the link below to view sourcecode on the Web)</p>
+<dl>
+<dt><b>URL for the SVN repository</b></dt><dd><a href="https://www.seasar.org/svn/sastruts/trunk/sa-struts-plugin/">https://www.seasar.org/svn/sastruts/trunk/sa-struts-plugin/</a></dd>
+</dl>
+<h3><a name="blog">Committer's blog</a></h3>
+<p>Specifications of SAStrutsPlugin are discussed mainly on the committer's blog.</p>
+<ul>
+  <li><a href="http://d.hatena.ne.jp/wyukawa/" target="_blank">watawata Nikki [in Japanese]</a></li>
+</ul>
+
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>© Copyright The Seasar Foundation and the others 2008, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

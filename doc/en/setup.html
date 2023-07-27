@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" version="-//W3C//DTD XHTML 1.1//EN">
+<head xmlns="http://www.w3.org/1999/xhtml" profile="">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta http-equiv="Content-Language" content="en" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta http-equiv="Content-Style-Type" content="text/css" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta name="description" content="sastruts" xmlns="http://www.w3.org/1999/xhtml"/>
+<title xmlns="http://www.w3.org/1999/xhtml">Super Agile Struts - Setup</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" xmlns="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" xmlns="http://www.w3.org/1999/xhtml"/>
+</head>
+
+<body xmlns="http://www.w3.org/1999/xhtml">
+<!-- TRANSLATION NOTE BEGINS -->
+<div style="position:absolute; left: 200px; top: 160px; border: 1px dotted gray; width: 800px; background-color: #EEEEFF">
+NOTE: This page is a translation from the original Japanese version of
+ <a href="../setup.html">setup.html, 
+ rev 692</a> 
+ as of 2008-08-15.
+</div>
+<!--  TRANSLATION NOTE ENDS  -->
+
+<div id="wrapper" xmlns="http://www.w3.org/1999/xhtml">
+
+<div id="header" xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="line" xmlns="http://www.w3.org/1999/xhtml"><span class="hide" xmlns="http://www.w3.org/1999/xhtml">spacer</span></div>
+
+<div id="logo" xmlns="http://www.w3.org/1999/xhtml"><h2 id="h01" class="hide" xmlns="http://www.w3.org/1999/xhtml">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" xmlns="http://www.w3.org/1999/xhtml"/></div>
+
+<div id="tool" xmlns="http://www.w3.org/1999/xhtml">
+
+<h2 xmlns="http://www.w3.org/1999/xhtml"><a href="http://search.seasar.org/" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/" xmlns="http://www.w3.org/1999/xhtml" method="get" enctype="application/x-www-form-urlencoded">
+<div xmlns="http://www.w3.org/1999/xhtml">
+	<input id="search_phrase" type="text" name="phrase" size="20" xmlns="http://www.w3.org/1999/xhtml"/>
+	<input type="hidden" name="perpage" value="30" xmlns="http://www.w3.org/1999/xhtml"/>
+	<input type="hidden" name="enc" value="UTF-8" xmlns="http://www.w3.org/1999/xhtml"/>
+	<input id="search_go" type="submit" value="Search" xmlns="http://www.w3.org/1999/xhtml"/>
+</div>
+</form>
+
+<h2 xmlns="http://www.w3.org/1999/xhtml">Seasar Banner</h2>
+
+<p xmlns="http://www.w3.org/1999/xhtml"><a href="http://www.seasar.org/images/seasar_banner.gif" xmlns="http://www.w3.org/1999/xhtml" shape="rect"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" xmlns="http://www.w3.org/1999/xhtml"/></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left" xmlns="http://www.w3.org/1999/xhtml">
+
+<h2 xmlns="http://www.w3.org/1999/xhtml">Menu</h2>
+
+<ul xmlns="http://www.w3.org/1999/xhtml">
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="index.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Home</a></li>
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="setup.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Setting up</a>
+    	<ul xmlns="http://www.w3.org/1999/xhtml">
+    		<li xmlns="http://www.w3.org/1999/xhtml"><a href="#tutorial" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Tutorial</a></li>
+    		<li xmlns="http://www.w3.org/1999/xhtml"><a href="#blank" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Blank</a></li>
+    		<li xmlns="http://www.w3.org/1999/xhtml"><a href="#primitive" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Primitive Setup</a></li>
+    	</ul>
+    </li>
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="download.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Download</a></li>
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="releaseNotes.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Release Notes</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="tutorial.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Tutorial</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="featureReference.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Feature Reference</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="annotationReference.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Annotations Reference</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="fileReference.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Configuration File Reference</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="sastrutsplugin.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">SAStrutsPlugin</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="portlet.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Portlet</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center" xmlns="http://www.w3.org/1999/xhtml">
+
+<div id="article" xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="section" xmlns="http://www.w3.org/1999/xhtml">
+
+<h2 xmlns="http://www.w3.org/1999/xhtml">Setting up</h2>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="tutorial" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Setting up Tutorial</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">The tutorial project is configured for use with Eclipse, Tomcat and Tomcat launcher. Though SAStruts itself does not depend on any specific IDEs or app servers, you should use Eclipse, Tomcat and Tomcat Launcher for tutorial.</p>
+
+<h4 xmlns="http://www.w3.org/1999/xhtml">1. Tutorial project</h4>
+<p xmlns="http://www.w3.org/1999/xhtml">
+Download sa-struts-tutorial-xxx.zip from the <a href="download.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">download page</a>
+
+and extract the archive.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Import a directory named sa-struts-tutorial in the extracted contents
+
+as an Eclipse project.</p>
+<h4 xmlns="http://www.w3.org/1999/xhtml">2. Tomcat and related plugin</h4>
+<p xmlns="http://www.w3.org/1999/xhtml">Install Tomcat from <a href="http://tomcat.apache.org/" xmlns="http://www.w3.org/1999/xhtml" shape="rect">this link</a> following the instrunctions.
+ Select a release of version 5.5 or later. Installation is not needed if you have already installed one.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Tomcat Launcher is a plugin developed by EclipseTotale. You can install it from the Eclipse3.2 update site of Seasar Project. From Eclipse menu,  select  [Help]-&gt; [Software Updates] -&gt; [Find and Install…] to show Install/Update dialog.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Check [Search for new features to install] radio button then click [Next]. Click [New Remote site], enter [Seasar Plugin3.2] to [Name], enter [http://eclipse.seasar.org/updates/<b xmlns="http://www.w3.org/1999/xhtml">3.2</b>/] to [URL], then click [OK].</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Click [Finish], then Tomcat Launcher appears as an option. Check  it and install. Installation is not needed if you have already installed one.</p>
+<h4 xmlns="http://www.w3.org/1999/xhtml">3. Plugins to facilitate development with SAStruts</h4>
+<p xmlns="http://www.w3.org/1999/xhtml">SAStrutsPlugin is an Eclipse plugin to assist your development work with SAStruts. You can switch between a Java file and a corresponding JSP. For datails, see <a href="sastrutsplugin.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">SAStrutsPlugin page</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">To use SAStrutsPlugin, WST2.0 is required. WTP2.0 is already installed if you use Eclipse IDE for JAVA EE Developers. If you use other distributions, check Eclipse site and install required packages before you proceed.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">ResourceSynchronizer is a plugin to operate Eclipes from your web browser. By using it, you can display stack trace and the appropriate part of the source code when an JAVA exception is thrown.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">You can install SAStrutsPlugin and ResourceSynchronizer from the Eclipse3.3 update site of Seasar Project.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">From Eclipse menu,  select  [Help]-&gt; [Software Updates] -&gt; [Find and Install…] to show Install/Update dialog.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Check [Search for new features to install] radio button then click [Next]. Click [New Remote site], enter [Seasar Plugin3.3] to [Name], enter [http://eclipse.seasar.org/updates/<b xmlns="http://www.w3.org/1999/xhtml">3.3</b>/] to [URL], then click [OK].</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Click [Finish], then ResourceSynchronizer and SAStrutsPlugin will appear as options. Check  them and install. Installation is not needed if you have already installed one.</p>
+<h4 xmlns="http://www.w3.org/1999/xhtml">4. PropertiesEditor Plugin</h4>
+<p xmlns="http://www.w3.org/1999/xhtml">Optionally, you can install PropertiesEditor plugin to edit .properties file in a native language, e.g. Japanese. Though this plugin is optional, it is very useful for developers who handle properties with i18n characters.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">From Eclipse menu,  select  [Help]-&gt; [Software Updates] -&gt; [Find and Install…] to show Install/Update dialog.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Check [Search for new features to install] radio button then click [Next]. Click [New Remote site], enter [PropertiesEditor] to [Name], enter [http://propedit.sourceforge.jp/eclipse/updates/] to [URL], then click [OK].</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Click [Finish], then PropertiesEditorForEclipse3.x appears as an option. Install it. Installation is not needed if you have already installed one.</p>
+<h4 xmlns="http://www.w3.org/1999/xhtml">5. Setting after the installation and checking that it works</h4>
+<p xmlns="http://www.w3.org/1999/xhtml">After the installation, let us configure Tomcat Launcher. In the menu, select  [Window] -&gt; [Preferences…]-&gt; [Tomcat]. Specify Tomcat version and Tomcat home to the version you have downloaded and the directory you have installed Tomcat. Select Context files as Context declaration mode, then click [OK].</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Right-click the project of sa-struts-tutorial then select [Tomcat project] -&gt; [Update context definition]. That's all for Tomcat Launcher configuration.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">The next step is to  configure Tomcat. Modify <a href="fileReference.html#server" xmlns="http://www.w3.org/1999/xhtml" shape="rect">conf/server.xml</a>、 <a href="fileReference.html#context" xmlns="http://www.w3.org/1999/xhtml" shape="rect">conf/context.xml</a>、 <a href="fileReference.html#defaultweb" xmlns="http://www.w3.org/1999/xhtml" shape="rect">conf/web.xml</a>  following the instructions found in the links.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Now let's start Tomcat. From the Menu, select [Tomcat]-&gt;[Start Tomcat] to start Tomcat. Confirm that the startup process is complete with no errors, then access <br xmlns="http://www.w3.org/1999/xhtml"/> http://localhost:8080/sa-struts-tutorial with your web browser. If index page is displayed, that indicates that the setup prcess goes well.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">
+Please proceed to <a href="tutorial.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Tutorial</a>.</p>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="blank" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Setting up Blank</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">You can create a new SAStruts project with an Eclipse plugin named Dolteng. For installation of Dolteng, see <a href="http://dolteng.sandbox.seasar.org/#Setup" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">A project made with Dolteng has H2 database installed as a default  [but  you can use other databases as well, of course ]. If you want to try SAStruts with H2 as the first step, install DbLauncher from the following update site (for Seasar Plugin3.2). <br xmlns="http://www.w3.org/1999/xhtml"/> http://eclipse.seasar.org/updates/3.2/</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Now we will confirm settings of Dolteng. Open Dolteng Settings Dialog with [Window] - [Preferences]. Uncheck Download resources from online checkbox if you don't use Maven2. Or, in the case you use Maven2, you have to set Maven Repository Path.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">See <a href="http://dolteng.sandbox.seasar.org/usage.html#project-wizard" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a> to know how to create a new project.[While the  page of the link above is in Japanese, the outline should be clear from screenshots and the context .] Select &quot;S2JDBC&quot; for Persistence; &quot;SAStruts&quot; for Presentation. Other options include various Seasar and related subproducts which may work with SAStruts, but we are not going to dig into them in detail here.</p>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="primitive" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Primitive Setup</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">In the case you want to set up without relying on Tutorial nor Blank,  download sa-struts-turorial-xxx.zip from the <a href="download.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">download page</a>  and extract the archive to obtain required files.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Add files in sa-struts-tutorial/src/main/resources to your classpath.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Copy files in sa-struts-tutorial/webapp/WEB-INF into WEB-INF.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Copy files in sa-struts-tutorial/webapp/WEB-INF/lib into WEB-INF/lib.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Specify a root package for your project. For details of root package, see <a href="featureReference.html#Project" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Project components</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">For configurations of data access, please see <a href="featureReference.html#DataAccess" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">For configurations of transaction, please see <a href="featureReference.html#Transaction" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer" xmlns="http://www.w3.org/1999/xhtml">
+<address xmlns="http://www.w3.org/1999/xhtml">© Copyright The Seasar Foundation and the others 2006-2008, all rights reserved.</address>
+<div class="line" xmlns="http://www.w3.org/1999/xhtml"><span class="hide" xmlns="http://www.w3.org/1999/xhtml">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>

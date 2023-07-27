@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" version="-//W3C//DTD XHTML 1.1//EN">
+<head xmlns="http://www.w3.org/1999/xhtml" profile="">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta http-equiv="Content-Language" content="en" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta http-equiv="Content-Style-Type" content="text/css" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta name="keywords" content="sastruts, Seasar, The Seasar Project, The Seasar Foundation, OSS, Open Source Software, Java, Framework" xmlns="http://www.w3.org/1999/xhtml"/>
+<meta name="description" content="sastruts" xmlns="http://www.w3.org/1999/xhtml"/>
+<title xmlns="http://www.w3.org/1999/xhtml">Super Agile Struts - Tutorial</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" xmlns="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" xmlns="http://www.w3.org/1999/xhtml"/>
+</head>
+
+<body xmlns="http://www.w3.org/1999/xhtml">
+<!-- TRANSLATION NOTE BEGINS -->
+<div style="position:absolute; left: 200px; top: 160px; border: 1px dotted gray; width: 800px; background-color: #EEEEFF">
+NOTE: This page is a translation from the original Japanese version of
+ <a href="../tutorial.html">tutorial.html, 
+ rev 547</a> 
+ as of 2008-06-02.
+</div>
+<!--  TRANSLATION NOTE ENDS  -->
+
+<div id="wrapper" xmlns="http://www.w3.org/1999/xhtml">
+
+<div id="header" xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="line" xmlns="http://www.w3.org/1999/xhtml"><span class="hide" xmlns="http://www.w3.org/1999/xhtml">spacer</span></div>
+
+<div id="logo" xmlns="http://www.w3.org/1999/xhtml"><h2 id="h01" class="hide" xmlns="http://www.w3.org/1999/xhtml">The Seasar Foundation Project Site</h2><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" xmlns="http://www.w3.org/1999/xhtml"/></div>
+
+<div id="tool" xmlns="http://www.w3.org/1999/xhtml">
+
+<h2 xmlns="http://www.w3.org/1999/xhtml"><a href="http://search.seasar.org/" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/" xmlns="http://www.w3.org/1999/xhtml" method="get" enctype="application/x-www-form-urlencoded">
+<div xmlns="http://www.w3.org/1999/xhtml">
+	<input id="search_phrase" type="text" name="phrase" size="20" xmlns="http://www.w3.org/1999/xhtml"/>
+	<input type="hidden" name="perpage" value="30" xmlns="http://www.w3.org/1999/xhtml"/>
+	<input type="hidden" name="enc" value="UTF-8" xmlns="http://www.w3.org/1999/xhtml"/>
+	<input id="search_go" type="submit" value="Search" xmlns="http://www.w3.org/1999/xhtml"/>
+</div>
+</form>
+
+<h2 xmlns="http://www.w3.org/1999/xhtml">Seasar Banner</h2>
+
+<p xmlns="http://www.w3.org/1999/xhtml"><a href="http://www.seasar.org/images/seasar_banner.gif" xmlns="http://www.w3.org/1999/xhtml" shape="rect"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" xmlns="http://www.w3.org/1999/xhtml"/></a></p>
+
+</div>
+
+</div><!-- header -->
+
+
+<div id="contents_left" xmlns="http://www.w3.org/1999/xhtml">
+
+<h2 xmlns="http://www.w3.org/1999/xhtml">Menu</h2>
+
+<ul xmlns="http://www.w3.org/1999/xhtml">
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="index.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Home</a></li>
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="setup.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Setting up</a></li>
+    <li xmlns="http://www.w3.org/1999/xhtml"><a href="download.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Download</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="tutorial.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Tutorial</a>
+		<ul xmlns="http://www.w3.org/1999/xhtml">
+		    <li xmlns="http://www.w3.org/1999/xhtml"><a href="#index" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Index</a></li>
+			<li xmlns="http://www.w3.org/1999/xhtml"><a href="#add" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Add numbers</a></li>
+			<li xmlns="http://www.w3.org/1999/xhtml"><a href="#upload" xmlns="http://www.w3.org/1999/xhtml" shape="rect">File Upload</a></li>
+			<li xmlns="http://www.w3.org/1999/xhtml"><a href="#clientValidator" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Client-side Validator</a></li>
+		</ul>
+	</li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="featureReference.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Feature Reference</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="annotationReference.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Annotations Reference</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="fileReference.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Configuration File Reference</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="sastrutsplugin.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">SAStrutsPlugin</a></li>
+	<li xmlns="http://www.w3.org/1999/xhtml"><a href="portlet.html" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Portlet</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center" xmlns="http://www.w3.org/1999/xhtml">
+
+<div id="article" xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="section" xmlns="http://www.w3.org/1999/xhtml">
+
+<h2 xmlns="http://www.w3.org/1999/xhtml">Tutorial</h2>
+<p xmlns="http://www.w3.org/1999/xhtml">Since Seasar2 supports HOT deploy,  modifications made on code are applied on the testing application server wthout restarting. Besides, in most cases,  it is not necessary to write configuration files.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">
+Start up the application server following the instructions at <a href="setup.html#tutorial" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Setting up Tutorial</a>. Modify JAVA code or *.properties flie variously  to feel the power of HOT deploy.</p>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="index" xmlns="http://www.w3.org/1999/xhtml" shape="rect">index</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">Open http://localhost:8080/sa-struts-tutorial with your web browser. You see a showcase page for various applications.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Let's see contents under webapp (i.e. web application root) directory.  There is no index.jsp(index.html) present. Then, what page is displayed?</p>
+<p xmlns="http://www.w3.org/1999/xhtml">If  a class named &lt;rootpackage&gt;.action.IndexAction is present, then SAStruts automatically  invokes it when you access the web application root. For details of rootpackage, please see <a href="featureReference.html#Project" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Source code for IndexAction.java is as follows :</p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">IndexAction.java</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+package tutorial.action;
+
+import org.seasar.struts.annotation.Execute;
+
+public class IndexAction {
+
+    @Execute(validator = false)
+    public String index() {
+        return &quot;index.jsp&quot;;
+    }
+}
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">After the transition to every action, an execution method with @Execute annotation is invoked. Please see <a href="featureReference.html#ExecuteMethod" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a> to find out which one of multiple execution methods defined is invoked. In this case, we have only one execution method, and obviously, index() is called.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">The return value of the method specifies where to forward. In the case of IndexAction#index(), it forwards to index.jsp. More precisely, it forwards to /WEB-INF/view/index.jsp because VIEW_PREFIX parameter in web.xml is specified as /WEB-INF/view.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Now, let's see webapp/WEB-INF/struts-config.xml. You don't see any configurations about actions nor actionforms. SAStruts seeks appropriate action classes for the URL, picks up information from them, then reconstructs required configurations equivalent to struts-config.xml.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Where is webapp/WEB-INF/validation.xml ? You don't see such a file. SAStruts reconstructs required configurations equivalent to validation.xml from annotations added to properties for validation.</p>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="add" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Add numbers</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">Access Add Numbers page from the index page. [NOTE: Currently, the index page is written only in Japanese. You may try an alternative way mentioned in the next sentence :] Or, open http://localhost:8080/sa-struts-tutorial/add with your browser. It's the same thing. You see Add Numbers page.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">The action class corresponding to /add is tutorial.action.AddAction . For details of actions, please see <a href="featureReference.html#Action" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Source code for AddAction.java is as follows :</p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">AddAction.java</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+package tutorial.action;
+
+import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.annotation.IntegerType;
+import org.seasar.struts.annotation.Required;
+
+public class AddAction {
+
+    @Required
+    @IntegerType
+    public String arg1;
+
+    @Required
+    @IntegerType
+    public String arg2;
+
+    public Integer result;
+
+    @Execute(validator = false)
+    public String index() {
+        return &quot;index.jsp&quot;;
+    }
+
+    @Execute(input = &quot;index.jsp&quot;)
+    public String submit() {
+        result = Integer.valueOf(arg1) + Integer.valueOf(arg2);
+        return &quot;index.jsp&quot;;
+    }
+}
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">An action is a POJO (an ordinary Java class with no specific superclass). The statuses of the action are also defined in the action.  That's because it is easier to understand if you find related multiple information in one class.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">As Seasar2 can recognize public fields as properties, it is not necessary to write getters nor setters. In SAStruts, public fields are recognizable even from EL and Struts. If you are interested in the mechanism, read the source code in org.seasar.struts.action package. </p>
+<p xmlns="http://www.w3.org/1999/xhtml">Request handling should be written in <a href="featureReference.html#ExecuteMethod" xmlns="http://www.w3.org/1999/xhtml" shape="rect">execution methods</a>. Every execution method have an @Execute annotation. Its return value is the path of the page to forward to.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">SAStruts uses the URL and optionally a request parameter  to determine which of multiple execution methods to call.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">In the following example, AddAction#index() is called. The string after /add will be the method name.</p>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+http://localhost:8080/sa-struts-tutorial/add/index
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">If no methods are defined, index() is called. Therefore, the invocation above is the same thing as below :</p>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+http://localhost:8080/sa-struts-tutorial/add/
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">In the case of form submit, specify the name of the execution method to name attribute of the button. In the following example, submit() method of the action class is called.</p>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit this!&quot;/&gt;
+</pre><p xmlns="http://www.w3.org/1999/xhtml">For details of @Execute,  please see <a href="annotationReference.html#Execute" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">To validate with annotations (validators), add <a href="annotationReference.html#Validation" xmlns="http://www.w3.org/1999/xhtml" shape="rect">annotations for validation</a> to the fields and set validator attribute of @Execute to true (this is default). When validator=true, you have to specify a forward page on validation failure with input attibute. For details of validators, please see <a href="annotationReference.html#Validation" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">/add/index.jsp is as this :</p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">/add/index.jsp</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Add&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors/&gt;
+&lt;s:form&gt;
+&lt;html:text property=&quot;arg1&quot;/&gt; + &lt;html:text property=&quot;arg2&quot;/&gt;
+= ${f:h(result)}&lt;br /&gt;
+&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit This!&quot;/&gt;
+&lt;/s:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">The declaration for taglib used commonly in every JSP is defined in  webapp/WEB-INF/common/common.jsp. For details of common.jsp, see <a href="featureReference.html#JSP" xmlns="http://www.w3.org/1999/xhtml" shape="rect">JSP</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">To show messages on validation error, put html:errors tag.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">To receive the submitted values, put s:form. Normally, you don't have to specify action attribute because it is automatically determined.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Put html:text tags  to receive input values. Specify the property names in the action.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Set name attribute of submit tag  to &quot;submit&quot; in order to call AddAction#submit() on submission.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Once submitted, the input values arg1 and arg2 are set to the action and checked if they are present and both of them are integer, according to the specified validation rules, i.e. @Required and @IntegerType.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">If the validations fail, SAStruts will forward control back to index.jsp specified by input attribute. If the validations are performed successfully, submit() will be invoked.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Then it  forwards to index.jsp again because the return value of submit() is index.jsp.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">result property of the action is set as an attribute of the request with the same name (&quot;result&quot;) , and it can be displayed with ${f:h(result)}. f:h is a function to escape HTML. For details,  please see <a href="featureReference.html#JSP" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="upload" xmlns="http://www.w3.org/1999/xhtml" shape="rect">File Upload</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">Access File Upload page from the index page. [NOTE: Currently, the index page is written only in Japanese. You may try an alternative way mentioned in the next sentence :] Or, open http://localhost:8080/sa-struts-tutorial/upload with your browser. It's the same thing. You see the File Upload page.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">The action class corresponding to /upload is tutorial.action.UploadAction . For details of actions, please see <a href="featureReference.html#Action" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Source code for UploadAction.java is as follows:</p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">UploadAction.java</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+package tutorial.action;
+
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.upload.FormFile;
+import org.seasar.framework.container.annotation.tiger.Binding;
+import org.seasar.framework.container.annotation.tiger.BindingType;
+import org.seasar.framework.exception.IORuntimeException;
+import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.annotation.Required;
+import org.seasar.struts.upload.S2MultipartRequestHandler;
+import org.seasar.struts.util.ActionMessagesUtil;
+
+public class UploadAction {
+
+    @Required
+    @Binding(bindingType = BindingType.NONE)
+    <b xmlns="http://www.w3.org/1999/xhtml">public FormFile formFile;</b>
+
+    @Binding(bindingType = BindingType.NONE)
+    <b xmlns="http://www.w3.org/1999/xhtml">public FormFile[] formFiles;</b>
+
+    public HttpServletRequest request;
+
+    public ServletContext application;
+
+    @Execute(validator = false)
+    public String index() {
+        SizeLimitExceededException e = (SizeLimitExceededException) request
+            .getAttribute(S2MultipartRequestHandler.SIZE_EXCEPTION_KEY);
+        if (e != null) {
+            ActionMessages errors = new ActionMessages();
+            errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
+                &quot;errors.upload.size&quot;,
+                new Object[] { e.getPermittedSize(), e.getActualSize() }));
+            ActionMessagesUtil.addErrors(request, errors);
+        }
+        return &quot;index.jsp&quot;;
+    }
+
+    @Execute(input = &quot;index.jsp&quot;)
+    public String upload() {
+        ActionMessages messages = new ActionMessages();
+        upload(formFile, messages);
+        for (FormFile file : formFiles) {
+            upload(file, messages);
+        }
+        ActionMessagesUtil.addMessages(request, messages);
+        return &quot;index.jsp&quot;;
+    }
+
+    protected void upload(FormFile file, ActionMessages messages) {
+        if (file.getFileSize() == 0) {
+            return;
+        }
+        String path = application.getRealPath(&quot;/WEB-INF/work/&quot;
+            + file.getFileName());
+        try {
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(
+                path));
+            try {
+                out.write(file.getFileData(), 0, file.getFileSize());
+            } finally {
+                out.close();
+            }
+        } catch (IOException e) {
+            throw new IORuntimeException(e);
+        }
+        messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
+            &quot;messages.upload.complete&quot;,
+            new Object[] { path }));
+    }
+}
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">When you want to add file upload feature to your action,  you must define one or more properties of type FormFile to your Action or ActionForm and access them to obtain the uploaded files.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Since FormFile is an interface,  a property of that type is the target of <a href="http://s2container.seasar.org/2.4/ja/DIContainer.html#AutoBindingMode" xmlns="http://www.w3.org/1999/xhtml" shape="rect">automatic binding</a> by Seasar2, despite it should not be and a &quot;skip setting property&quot;  warning occurs on runtime. To avoid that, a FormFile type property must have @Binding(bindingType = BindingType.NONE) annotation.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Define the property type with array style, i.e. FormFile[], then it can receive multiple FormFile.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">You cannot specify an annotation for validation to the FormFile array. So, for each element of the array, check that FormFile#getFileSize() returns a value greater than zero to judge if it is really uploaded.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">If the size of the uploaded file exceeds the limit predetermined (by maxFileSize attribute of controller tag in struts-config.xml), then SizeLimitExceededException will be thrown.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">In the case that exception is thrown, control will be forwarded to index() method. You can check if the upload size has exceeded the limit by checking the presence of SizeLimitExceededException [ as an attribute of the request; see the example code above ].</p>
+<p xmlns="http://www.w3.org/1999/xhtml">/upload/index.jsp is as this :</p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">/upload/index.jsp</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Upload&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors/&gt;
+&lt;html:messages id=&quot;m&quot; message=&quot;true&quot;&gt;
+${f:h(m)}&lt;br /&gt;
+&lt;/html:messages&gt;
+
+&lt;s:form action=&quot;/upload&quot; <b xmlns="http://www.w3.org/1999/xhtml">enctype=&quot;multipart/form-data&quot;</b>&gt;
+<b xmlns="http://www.w3.org/1999/xhtml">&lt;input type=&quot;file&quot; name=&quot;formFile&quot; /&gt;</b>&lt;br /&gt;
+&lt;c:forEach varStatus=&quot;s&quot; begin=&quot;0&quot; end=&quot;1&quot;&gt;
+<b xmlns="http://www.w3.org/1999/xhtml">&lt;input type=&quot;file&quot; name=&quot;formFiles[${s.index}]&quot; /&gt;</b>&lt;br /&gt;
+&lt;/c:forEach&gt;
+
+&lt;input type=&quot;submit&quot; name=&quot;upload&quot; value=&quot;Upload this!&quot;/&gt;
+&lt;/s:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">For file upload, set enctype attribute of form to &quot;multipart/form-data&quot;. Set the names of the properties of Action or ActionForm to name attributes of the tags for upload (&lt;input type=&quot;file&quot; .../&gt;).  For FormFile array, set the value of name attribute to property_name[index].</p>
+
+<h3 xmlns="http://www.w3.org/1999/xhtml"><a name="clientValidator" xmlns="http://www.w3.org/1999/xhtml" shape="rect">Client-side Validator</a></h3>
+<p xmlns="http://www.w3.org/1999/xhtml">Access Client-Side Validator page from the index page. [NOTE: Currently, the index page is written only in Japanese. You may try an alternative way mentioned in the next sentence: ] Or, open http://localhost:8080/sa-struts-tutorial/clientValidator/ with your browser. It's the same thing. You see the Client-Side Validator page.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Don't enter anything and click &quot;aaa is required&quot; button. [NOTE: Currently, the button is in Japanese, but  you may find which button to click, with &quot;aaa&quot; letter sequence.] JavaScript validation will be invoked and a message &quot;aaa is required. &quot; will be shown.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Then similarly, click &quot;bbb is required&quot; button. JavaScript validation will be invoked and a message &quot;bbb is required. &quot; will be shown. That shows that different validations are perfomed for each button. </p>
+<p xmlns="http://www.w3.org/1999/xhtml">The action class corresponding to /clientValidator is tutorial.action.ClientValidatorAction. For details of actions, please see <a href="featureReference.html#Action" xmlns="http://www.w3.org/1999/xhtml" shape="rect">here</a>.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">Source code for ClientValidatorAction.java is as follows: </p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">ClientValidatorAction.java</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+package tutorial.action;
+
+import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.annotation.Required;
+
+public class ClientValidatorAction {
+
+    @Required(target = &quot;submit&quot;)
+    public String aaa;
+
+    @Required(target = &quot;submit2&quot;)
+    public String bbb;
+
+    @Execute(validator = false)
+    public String index() {
+        return &quot;index.jsp&quot;;
+    }
+
+    @Execute(validator = true, input = &quot;index.jsp&quot;)
+    public String submit() {
+        return &quot;index.jsp&quot;;
+    }
+
+    @Execute(validator = true, input = &quot;index.jsp&quot;)
+    public String submit2() {
+        return &quot;clientValidator.jsp&quot;;
+    }
+}
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">If you want to use different validator for each button (method), you have to specify the names of the methods to target attribute to the annotations for validators. To specify multiple methods, separate with comma(,) .</p>
+<p xmlns="http://www.w3.org/1999/xhtml">/clientValidator/index.jsp is as this :</p>
+<h5 xmlns="http://www.w3.org/1999/xhtml">/clientValidator/index.jsp</h5>
+<pre xmlns="http://www.w3.org/1999/xhtml" xml:space="preserve">
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Client Validator&lt;/title&gt;
+&lt;html:javascript formName=&quot;clientValidatorActionForm_submit&quot;/&gt;
+&lt;html:javascript formName=&quot;clientValidatorActionForm_submit2&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:errors/&gt;
+&lt;s:form action=&quot;/clientValidator&quot;&gt;
+aaa:&lt;html:text property=&quot;aaa&quot;/&gt;&lt;br /&gt;
+bbb:&lt;html:text property=&quot;bbb&quot;/&gt;&lt;br /&gt;
+&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;aaa is required&quot;
+    onclick=&quot;forms[0].name='clientValidatorActionForm_submit';
+        return validateClientValidatorActionForm_submit(forms[0]);&quot;/&gt;
+&lt;input type=&quot;submit&quot; name=&quot;submit2&quot; value=&quot;bbb is required&quot;
+    onclick=&quot;forms[0].name='clientValidatorActionForm_submit2';
+        return validateClientValidatorActionForm_submit2(forms[0]);&quot;/&gt;
+&lt;/s:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p xmlns="http://www.w3.org/1999/xhtml">To render JavaScript for validation, use html:javascript tag. Specify &quot;action name + `Form' + `_' + method name&quot; to formName attribute.</p>
+<p xmlns="http://www.w3.org/1999/xhtml">To invoke validator JavaScript, specify to onclick attribute of the button's tag a code fragment which first assigns the above formName attribute value to name attribute of form element, then calls the method named &quot;validate + formName attribute value&quot;.</p>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer" xmlns="http://www.w3.org/1999/xhtml">
+<address xmlns="http://www.w3.org/1999/xhtml">© Copyright The Seasar Foundation and the others 2006-2008, all rights reserved.</address>
+<div class="line" xmlns="http://www.w3.org/1999/xhtml"><span class="hide" xmlns="http://www.w3.org/1999/xhtml">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
