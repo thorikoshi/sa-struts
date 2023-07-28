@@ -9,7 +9,7 @@
   <packaging>jar</packaging>
   <name>sa-struts</name>
   <version>1.0.4-sp9.0</version>
-  <description></description>
+  <description/>
   <url>http://sastruts.seasar.org/</url>
   <inceptionYear>2004-2008</inceptionYear>
   <mailingLists>
@@ -142,7 +142,7 @@
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-j2ee_1.4_spec</artifactId>
-      <version>1.0</version>
+      <version>1.1</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
