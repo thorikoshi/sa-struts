@@ -9,7 +9,7 @@
   <packaging>jar</packaging>
   <name>sa-struts</name>
   <version>1.0.4-sp9.0</version>
-  <description></description>
+  <description/>
   <url>http://sastruts.seasar.org/</url>
   <inceptionYear>2004-2008</inceptionYear>
   <mailingLists>
@@ -124,7 +124,7 @@
     <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
-      <version>1.2</version>
+      <version>1.5</version>
       <type>jar</type>
     </dependency>
     <dependency>
